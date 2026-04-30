@@ -1,0 +1,219 @@
+@import "tailwindcss";
+
+/* ============================================
+   DESIGN SYSTEM — Rishii Kumar Singh Portfolio
+   Replicated from working old portfolio CSS
+   ============================================ */
+
+:root {
+  /* Colors */
+  --bg-primary: #0a0e1a;
+  --bg-secondary: #0f1524;
+  --bg-card: rgba(15, 25, 50, 0.6);
+  --bg-card-hover: rgba(20, 35, 70, 0.7);
+
+  --accent-cyan: #00f5d4;
+  --accent-purple: #7b2ff7;
+  --accent-pink: #f72f8e;
+  --accent-gradient: linear-gradient(135deg, #00f5d4, #7b2ff7);
+  --accent-gradient-hover: linear-gradient(135deg, #7b2ff7, #00f5d4);
+
+  --text-primary: #e4e8f1;
+  --text-secondary: #8892a8;
+  --text-muted: #556178;
+
+  --border-color: rgba(0, 245, 212, 0.12);
+  --border-glow: rgba(0, 245, 212, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.06);
+
+  /* Typography */
+  --font-heading: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  --font-body: var(--font-inter), 'Inter', sans-serif;
+
+  /* Spacing — EXACT same as old portfolio */
+  --section-padding: 100px 0;
+  --container-width: 1200px;
+
+  /* Effects */
+  --glass-blur: blur(16px);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow-glow: 0 0 30px rgba(0, 245, 212, 0.08);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+  /* shadcn compatibility */
+  --background: #0a0e1a;
+  --foreground: #e4e8f1;
+  --card: rgba(15, 25, 50, 0.6);
+  --card-foreground: #e4e8f1;
+  --primary: #00f5d4;
+  --primary-foreground: #0a0e1a;
+  --secondary: #0f1524;
+  --secondary-foreground: #e4e8f1;
+  --muted: #0f1524;
+  --muted-foreground: #556178;
+  --accent: rgba(0, 245, 212, 0.1);
+  --accent-foreground: #00f5d4;
+  --destructive: #f72f8e;
+  --destructive-foreground: #e4e8f1;
+  --border: rgba(255, 255, 255, 0.06);
+  --input: rgba(255, 255, 255, 0.06);
+  --ring: #00f5d4;
+  --radius: 0.75rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-heading);
+
+  --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
+  --animate-fade-in-up: fadeInUp 0.6s ease forwards;
+  --animate-blink: blink 1s infinite;
+  --animate-scroll-wheel: scroll-wheel 2s infinite;
+
+  @keyframes spotlight {
+    0% { opacity: 0; transform: translate(-72%, -62%) scale(0.5); }
+    100% { opacity: 1; transform: translate(-50%, -40%) scale(1); }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  @keyframes scroll-wheel {
+    0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(16px); }
+  }
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--accent-cyan); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-purple); }
+
+/* Particle Canvas */
+#particles-canvas {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0; pointer-events: none;
+}
+
+/* Spline Loader */
+.loader {
+  width: 48px; height: 48px;
+  border: 3px solid rgba(0, 245, 212, 0.15);
+  border-top: 3px solid var(--accent-cyan);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ============================================
+   SECTIONS — EXACT match of old portfolio
+   ============================================ */
+.portfolio-section {
+  padding: var(--section-padding);
+  position: relative;
+  z-index: 1;
+}
+
+.section-alt-bg {
+  background: var(--bg-secondary);
+}
+
+/* Container — same as old: max-width 1200px, padding 0 24px */
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Section Title — same as old */
+.section-heading {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-heading .section-number {
+  color: var(--accent-cyan);
+  font-size: 1rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+  font-family: var(--font-heading);
+}
+
+.section-heading .section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Reveal Animation */
+.reveal-element {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-element.revealed { opacity: 1; transform: translateY(0); }
+
+/* ============================================
+   RESPONSIVE — match old portfolio breakpoints
+   ============================================ */
+@media (max-width: 768px) {
+  .portfolio-section { padding: 60px 0; }
+}
