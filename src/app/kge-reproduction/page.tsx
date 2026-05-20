@@ -179,7 +179,7 @@ export default function KgeReproduction() {
               </p>
               <p className="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
                 No amount of training optimization can make TransE model symmetric relations. 
-                Its scoring function ($h + r \approx t$) dictates that if $(h, r, t)$ and $(t, r, h)$ both hold, the relation vector $r$ is forced to **exactly zero**, making it impossible for the model to distinguish direction or entities.
+                Its scoring function (<strong className="font-bold text-[var(--text-primary)]">h + r &asymp; t</strong>) dictates that if <span className="italic text-white">(h, r, t)</span> and <span className="italic text-white">(t, r, h)</span> both hold, the relation vector <strong className="italic text-white">r</strong> is forced to <strong className="text-white font-semibold">exactly zero</strong>, making it impossible for the model to distinguish direction or entities.
               </p>
             </div>
             <div className="mt-12 rounded-2xl font-medium"
@@ -418,10 +418,10 @@ export default function KgeReproduction() {
                   <div className="space-y-4 text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
                     <p>
                       In TransE, relationships are modeled as translation in the vector space:{" "}
-                      <strong className="text-[var(--text-primary)]">{"$\\mathbf{h} + \\mathbf{r} \\approx \\mathbf{t}$"}</strong>.
+                      <strong className="text-[var(--text-primary)] font-bold">h + r &asymp; t</strong>.
                     </p>
                     <p>
-                      If a relation is <span className="text-[var(--accent-pink)] font-semibold">symmetric</span> (e.g. Spouse, Also See), both {"$(h, r, t)$"} and {"$(t, r, h)$"} must hold simultaneously:
+                      If a relation is <span className="text-[var(--accent-pink)] font-semibold">symmetric</span> (e.g. Spouse, Also See), both <span className="italic font-semibold text-white">(h, r, t)</span> and <span className="italic font-semibold text-white">(t, r, h)</span> must hold simultaneously:
                     </p>
                     <div className="font-mono text-xs md:text-sm text-[var(--text-primary)] space-y-5 my-10"
                       style={{
@@ -431,15 +431,15 @@ export default function KgeReproduction() {
                         padding: 'clamp(20px, 4vw, 32px)'
                       }}
                     >
-                      <div>1) {"$\\mathbf{h} + \\mathbf{r} = \\mathbf{t}$"}</div>
-                      <div>2) {"$\\mathbf{t} + \\mathbf{r} = \\mathbf{h}$"}</div>
+                      <div>1) <span className="font-bold text-white">h</span> + <span className="font-bold text-white">r</span> = <span className="font-bold text-white">t</span></div>
+                      <div>2) <span className="font-bold text-white">t</span> + <span className="font-bold text-white">r</span> = <span className="font-bold text-white">h</span></div>
                       <div className="border-t border-[rgba(255,255,255,0.08)] mt-3 pt-2 text-[var(--accent-pink)] font-bold">
-                        {"Substitute (1) into (2): $(\\mathbf{h} + \\mathbf{r}) + \\mathbf{r} = \\mathbf{h} \\implies 2\\mathbf{r} = 0 \\implies \\mathbf{r} = 0$!"}
+                        Substitute (1) into (2): (<span className="font-bold">h</span> + <span className="font-bold">r</span>) + <span className="font-bold">r</span> = <span className="font-bold">h</span> &rArr; 2<span className="font-bold">r</span> = 0 &rArr; <span className="font-bold">r</span> = 0!
                       </div>
                     </div>
                     <p>
-                      Because the relation vector {"$\\mathbf{r}$"} is forced to <strong className="text-white font-semibold">zero</strong>, the model collapses. 
-                      It means {"$\\mathbf{h} \\approx \\mathbf{t}$"}, meaning any entities connected by a symmetric relation must map to the <strong className="text-white font-semibold">exact same point</strong>. 
+                      Because the relation vector <span className="italic font-bold text-white">r</span> is forced to <strong className="text-white font-semibold">zero</strong>, the model collapses. 
+                      It means <span className="font-bold text-white">h &asymp; t</span>, meaning any entities connected by a symmetric relation must map to the <strong className="text-white font-semibold">exact same point</strong>. 
                       TransE becomes completely blind to direction and context!
                     </p>
                   </div>
@@ -447,7 +447,7 @@ export default function KgeReproduction() {
                   <div className="space-y-4 text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
                     <p>
                       In RotatE, relationships are modeled as rotations in a complex vector space:{" "}
-                      <strong className="text-[var(--text-primary)]">{"$\\mathbf{t} = \\mathbf{h} \\circ \\mathbf{r}$"}</strong>, where {"$|\\mathbf{r}_i| = 1$"} ({"$r_i = e^{i\\theta_i}$"}).
+                      <strong className="text-[var(--text-primary)] font-bold">t = h &nbsp;&bull;&nbsp; r</strong>, where <strong className="font-semibold text-white">|r<sub>i</sub>| = 1</strong> (r<sub>i</sub> = e<sup>i&theta;<sub>i</sub></sup>).
                     </p>
                     <p>
                       If a relation is <span className="text-[var(--accent-cyan)] font-semibold">symmetric</span>, both directions must be modeled:
@@ -460,17 +460,17 @@ export default function KgeReproduction() {
                         padding: 'clamp(20px, 4vw, 32px)'
                       }}
                     >
-                      <div>1) {"$\\mathbf{t} = \\mathbf{h} \\circ \\mathbf{r}$"}</div>
-                      <div>2) {"$\\mathbf{h} = \\mathbf{t} \circ \\mathbf{r}$"}</div>
+                      <div>1) <span className="font-bold text-white">t</span> = <span className="font-bold text-white">h</span> &bull; <span className="font-bold text-white">r</span></div>
+                      <div>2) <span className="font-bold text-white">h</span> = <span className="font-bold text-white">t</span> &bull; <span className="font-bold text-white">r</span></div>
                       <div className="border-t border-[rgba(255,255,255,0.08)] mt-3 pt-2 text-[var(--accent-cyan)] font-bold">
-                        {"Substitute (1) into (2): $\\mathbf{h} = (\\mathbf{h} \\circ \\mathbf{r}) \\circ \\mathbf{r} \\implies \\mathbf{h} = \\mathbf{h} \\circ \\mathbf{r}^2 \\implies \\mathbf{r}^2 = \\mathbf{I}$!"}
+                        Substitute (1) into (2): <span className="font-bold">h</span> = (<span className="font-bold">h</span> &bull; <span className="font-bold">r</span>) &bull; <span className="font-bold">r</span> &rArr; <span className="font-bold">h</span> = <span className="font-bold">h</span> &bull; <span className="font-bold">r</span><sup>2</sup> &rArr; <span className="font-bold">r</span><sup>2</sup> = <span className="font-bold">I</span>!
                       </div>
                     </div>
                     <p>
-                      This dictates that {"$\\theta_i \\in \\{0, \\pi\\}$"}. 
+                      This dictates that <strong className="font-semibold text-white">&theta;<sub>i</sub> &in; &#123;0, &pi;&#125;</strong>. 
                       Instead of collapsing to zero, the relation vector is a reflection! 
-                      It rotates the entity vector by {"$\\pi$"} radians (180 degrees). 
-                      It maps {"$\\mathbf{h}$"} to {"$\\mathbf{t}$"} on the unit circle, and {"$\\mathbf{t}$"} back to {"$\\mathbf{h}$"}, keeping them <strong className="text-white font-semibold">distinct and separated</strong>. 
+                      It rotates the entity vector by <strong className="text-white">&pi;</strong> radians (180 degrees). 
+                      It maps <span className="font-bold text-white">h</span> to <span className="font-bold text-white">t</span> on the unit circle, and <span className="font-bold text-white">t</span> back to <span className="font-bold text-white">h</span>, keeping them <strong className="text-white font-semibold">distinct and separated</strong>. 
                       Mathematical beauty preserves the graph topology perfectly!
                     </p>
                   </div>
@@ -1101,7 +1101,7 @@ export default function KgeReproduction() {
               RotatE Paper ↗
             </a>
             <a 
-              href="https://papers.nips.cc/paper/2013/hash/1ce227b22e11ac145e18b8f52429d73d-Abstract.html" 
+              href="https://papers.nips.cc/paper/2013/hash/1cecc7a77928ca8133fa24680a88d5f9-Abstract.html" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255,255,255,0.08)] border border-[var(--glass-border)] text-sm font-semibold text-[var(--text-primary)] transition-all shadow-md"
