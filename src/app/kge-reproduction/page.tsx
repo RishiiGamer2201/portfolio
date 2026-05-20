@@ -498,30 +498,42 @@ export default function KgeReproduction() {
                 {selectedModel === 'transe' ? (
                   // TransE representation: h and t are collapsed at the center, r is zero
                   <div className="relative w-full h-full">
-                    {/* Head entity vector h */}
-                    <div className="absolute top-[48%] left-[48%] flex flex-col items-center">
-                      <span className="w-3.5 h-3.5 rounded-full bg-[var(--accent-pink)] shadow-[0_0_10px_var(--accent-pink)] z-10" />
-                      <span className="text-[10px] font-mono text-[var(--accent-pink)] font-semibold mt-1.5">h ≈ t</span>
+                    {/* Head/Tail entity vector h ≈ t */}
+                    <div 
+                      className="absolute flex flex-col items-center animate-pulse"
+                      style={{ left: '96px', top: '96px', transform: 'translate(-50%, -7px)' }}
+                    >
+                      <span className="w-3.5 h-3.5 rounded-full bg-[var(--accent-pink)] shadow-[0_0_12px_var(--accent-pink)] z-10" />
+                      <span className="text-[10px] font-mono text-[var(--accent-pink)] font-semibold mt-1.5 whitespace-nowrap">h ≈ t</span>
                     </div>
-                    {/* Relation r vector line (collapsed to zero) */}
-                    <div className="absolute top-[50%] left-[50%] flex items-center">
-                      <span className="w-2 h-2 rounded-full bg-white z-20" />
-                      <span className="text-[10px] font-mono text-white ml-2">r = 0 (collapsed)</span>
+                    {/* Relation r vector (collapsed to zero) */}
+                    <div 
+                      className="absolute flex flex-col-reverse items-center"
+                      style={{ left: '96px', top: '96px', transform: 'translate(-50%, -20px)' }}
+                    >
+                      <span className="w-2 h-2 rounded-full bg-white z-20 shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
+                      <span className="text-[10px] font-mono text-white mb-1.5 whitespace-nowrap">r = 0 (collapsed)</span>
                     </div>
                   </div>
                 ) : (
                   // RotatE representation: h and t are opposite on the circle, r represents a rotation of pi
                   <div className="relative w-full h-full">
-                    {/* Head entity h at 0 deg */}
-                    <div className="absolute top-[44%] right-[2%] flex flex-col items-center">
-                      <span className="w-3.5 h-3.5 rounded-full bg-[var(--accent-cyan)] shadow-[0_0_10px_var(--accent-cyan)] z-10" />
-                      <span className="text-[10px] font-mono text-[var(--accent-cyan)] font-semibold mt-1.5">h (Entity A)</span>
+                    {/* Head entity h at 0 deg (Right side: X=176, Y=96) */}
+                    <div 
+                      className="absolute flex flex-col items-center"
+                      style={{ left: '176px', top: '96px', transform: 'translate(-50%, -7px)' }}
+                    >
+                      <span className="w-3.5 h-3.5 rounded-full bg-[var(--accent-cyan)] shadow-[0_0_12px_var(--accent-cyan)] z-10" />
+                      <span className="text-[10px] font-mono text-[var(--accent-cyan)] font-semibold mt-1.5 whitespace-nowrap">h (Entity A)</span>
                     </div>
 
-                    {/* Tail entity t at 180 deg */}
-                    <div className="absolute top-[44%] left-[2%] flex flex-col items-center">
-                      <span className="w-3.5 h-3.5 rounded-full bg-[var(--accent-purple)] shadow-[0_0_10px_var(--accent-purple)] z-10" />
-                      <span className="text-[10px] font-mono text-[var(--accent-purple)] font-semibold mt-1.5">t (Entity B)</span>
+                    {/* Tail entity t at 180 deg (Left side: X=16, Y=96) */}
+                    <div 
+                      className="absolute flex flex-col items-center"
+                      style={{ left: '16px', top: '96px', transform: 'translate(-50%, -7px)' }}
+                    >
+                      <span className="w-3.5 h-3.5 rounded-full bg-[var(--accent-purple)] shadow-[0_0_12px_var(--accent-purple)] z-10" />
+                      <span className="text-[10px] font-mono text-[var(--accent-purple)] font-semibold mt-1.5 whitespace-nowrap">t (Entity B)</span>
                     </div>
 
                     {/* Rotating arrow representing relation r */}
@@ -532,7 +544,7 @@ export default function KgeReproduction() {
                         </marker>
                       </defs>
                       <path 
-                        d="M 160 96 A 64 64 0 0 0 32 96" 
+                        d="M 176 96 A 80 80 0 0 0 16 96" 
                         fill="none" 
                         stroke="url(#gradient)" 
                         strokeWidth="2" 
@@ -545,7 +557,10 @@ export default function KgeReproduction() {
                       </linearGradient>
                     </svg>
 
-                    <div className="absolute top-[5%] left-[30%] text-[10px] font-mono text-[var(--accent-cyan)] bg-[var(--bg-secondary)] px-2.5 py-0.5 rounded border border-[rgba(0,245,212,0.15)] shadow-sm">
+                    <div 
+                      className="absolute text-[10px] font-mono text-[var(--accent-cyan)] bg-[var(--bg-secondary)] px-2.5 py-0.5 rounded border border-[rgba(0,245,212,0.15)] shadow-sm whitespace-nowrap"
+                      style={{ top: '5%', left: '50%', transform: 'translateX(-50%)' }}
+                    >
                       Relation r: Rotation by π
                     </div>
                   </div>
@@ -1101,7 +1116,7 @@ export default function KgeReproduction() {
               RotatE Paper ↗
             </a>
             <a 
-              href="https://papers.nips.cc/paper/2013/hash/1cecc7a77928ca8133fa24680a88d5f9-Abstract.html" 
+              href="https://proceedings.neurips.cc/paper/2013/hash/1cecc7a77928ca8133fa24680a88d2f9-Abstract.html" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255,255,255,0.08)] border border-[var(--glass-border)] text-sm font-semibold text-[var(--text-primary)] transition-all shadow-md"
