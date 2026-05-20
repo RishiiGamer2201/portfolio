@@ -16,8 +16,8 @@ export default function About() {
           <h2 className="section-title">About Me</h2>
         </div>
 
-        {/* about-grid: exact old CSS — 1.2fr 0.8fr, gap 60px */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '60px', alignItems: 'start' }}>
+        {/* about-grid: responsive columns, gap 40px to 60px */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-10 lg:gap-[60px] items-start">
           <div>
             <p style={{ color: 'var(--text-secondary)', marginBottom: '18px', fontSize: '1.02rem' }}>
               I&apos;m a B.Tech student at <strong style={{ color: 'var(--accent-cyan)' }}>Delhi Technological University</strong> specializing
@@ -41,8 +41,8 @@ export default function About() {
             </p>
           </div>
 
-          {/* Stats cards — exact old CSS: 2-col grid, gap 20px, padding 28px 20px */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+          {/* Stats cards — responsive 2-col grid */}
+          <div className="grid grid-cols-2 gap-5">
             {stats.map((stat) => (
               <div
                 key={stat.label}

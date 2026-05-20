@@ -85,8 +85,8 @@ export default function Achievements() {
           <h2 className="section-title">Achievements</h2>
         </div>
 
-        {/* achievements-grid: 3 cols to fit more content nicely, gap 24px */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+        {/* achievements-grid: responsive columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {achievements.map((a) => (
             <div
               key={a.title}

@@ -63,11 +63,8 @@ export default function Contact() {
             <strong style={{ color: 'var(--accent-cyan)' }}>internship opportunities</strong>. Feel free to reach out!
           </p>
 
-          {/* Contact cards — 5-column grid like old portfolio's 4-col but with 5 links */}
-          <div style={{
-            display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)',
-            gap: '20px', maxWidth: '1000px', margin: '0 auto 48px'
-          }}>
+          {/* Contact cards — responsive columns */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5 max-w-[1000px] mx-auto mb-12">
             {contactLinks.map((link) => (
               <a
                 key={link.label}
@@ -95,12 +92,7 @@ export default function Contact() {
           </div>
 
           {/* Contact form — centered below cards */}
-          <div style={{
-            maxWidth: '600px', margin: '0 auto',
-            background: 'var(--bg-card)', border: '1px solid var(--glass-border)',
-            borderRadius: '16px', padding: '32px 28px',
-            backdropFilter: 'var(--glass-blur)', textAlign: 'left'
-          }}>
+          <div className="max-w-[600px] mx-auto bg-[var(--bg-card)] border border-[var(--glass-border)] rounded-2xl p-6 sm:p-8 backdrop-blur-[var(--glass-blur)] text-left">
             <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.1rem', fontWeight: 600, marginBottom: '24px', textAlign: 'center' }}>
               Send a Message
             </h3>

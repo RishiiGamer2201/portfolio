@@ -11,8 +11,8 @@ export default function Experience() {
           <h2 className="section-title">Internships & Experience</h2>
         </div>
 
-        {/* experience-grid: exact old CSS — max-width 800px, gap 24px */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px', maxWidth: '800px', margin: '0 auto' }}>
+        {/* experience-grid: responsive columns */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[800px] mx-auto">
           {/* Artha Labs */}
           <div
             className="hover:border-[var(--border-glow)] hover:shadow-[var(--shadow-glow)] hover:-translate-y-1 transition-all duration-300"

@@ -28,8 +28,8 @@ export default function Certifications() {
           <h2 className="section-title">Certifications</h2>
         </div>
 
-        {/* certs-grid: 3 cols, gap 24px */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+        {/* certs-grid: responsive columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {certifications.map((cert) => (
             <a
               key={cert.name}

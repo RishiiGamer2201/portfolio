@@ -2,8 +2,32 @@
 
 import { ExternalLink, Play } from 'lucide-react'
 import { GithubIcon } from '@/components/icons/x-icon'
+import Link from 'next/link'
+
+function LinkedinIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect x="2" y="9" width="4" height="12" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  )
+}
 
 const projects = [
+  {
+    id: 'project-kge',
+    name: 'KGE Reproduction Study: TransE vs. RotatE',
+    desc: 'Reproduced landmark Knowledge Graph Embedding models from scratch. Uncovered that the reported FB15k-237 MRR gap collapsed to +0.001 under identical uniform sampling conditions, proving training procedure drove the paper\'s baseline gap. Conversely, WN18RR\'s +0.273 MRR gap held, representing a true architectural limit where TransE mathematically collapses for symmetric relations.',
+    tech: ['PyTorch', 'Python', 'Jupyter', 'Mathematical Modeling', 'EDA'],
+    metrics: [
+      { value: '62x', label: 'HITS@1 gap' },
+      { value: '+0.273', label: 'MRR gap (WN18RR)' },
+      { value: '+0.001', label: 'MRR gap (FB15k)' },
+    ],
+    links: { live: '/kge-reproduction', github: 'https://github.com/RishiiGamer2201', linkedin: 'https://www.linkedin.com/posts/rishiikumarsingh_machinelearning-knowledgegraphs-research-ugcPost-7462740269952622592-cDPM?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAE2YVd8BCtcVjHUrOqyPWKBeY1mKwEKjwhk' },
+    gradient: 'linear-gradient(135deg, #1b0a2a 0%, #0f1524 50%, #002e3b 100%)',
+  },
   {
     id: 'project-jarvis',
     name: 'Jarvis - Voice & Gesture Control',
@@ -77,8 +101,8 @@ export default function Projects() {
           <h2 className="section-title">Featured Projects</h2>
         </div>
 
-        {/* projects-grid: exact old CSS — 2 cols, gap 30px */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '30px' }}>
+        {/* projects-grid: responsive 2-column grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project) => (
             <div
               key={project.id}
@@ -102,13 +126,24 @@ export default function Projects() {
                       </a>
                     )}
                     {project.links.live && (
-                      <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="hover:bg-[var(--accent-cyan)] hover:text-[var(--bg-primary)] transition-all duration-300" style={{ width: 48, height: 48, borderRadius: '50%', border: '2px solid var(--accent-cyan)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-cyan)' }}>
-                        <ExternalLink size={20} />
-                      </a>
+                      project.links.live.startsWith('/') ? (
+                        <Link href={project.links.live} className="hover:bg-[var(--accent-cyan)] hover:text-[var(--bg-primary)] transition-all duration-300" style={{ width: 48, height: 48, borderRadius: '50%', border: '2px solid var(--accent-cyan)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-cyan)' }}>
+                          <ExternalLink size={20} />
+                        </Link>
+                      ) : (
+                        <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="hover:bg-[var(--accent-cyan)] hover:text-[var(--bg-primary)] transition-all duration-300" style={{ width: 48, height: 48, borderRadius: '50%', border: '2px solid var(--accent-cyan)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-cyan)' }}>
+                          <ExternalLink size={20} />
+                        </a>
+                      )
                     )}
                     {project.links.github && (
                       <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="hover:bg-[var(--accent-cyan)] hover:text-[var(--bg-primary)] transition-all duration-300" style={{ width: 48, height: 48, borderRadius: '50%', border: '2px solid var(--accent-cyan)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-cyan)' }}>
                         <GithubIcon width={20} height={20} />
+                      </a>
+                    )}
+                    {project.links.linkedin && (
+                      <a href={project.links.linkedin} target="_blank" rel="noopener noreferrer" className="hover:bg-[var(--accent-cyan)] hover:text-[var(--bg-primary)] transition-all duration-300" style={{ width: 48, height: 48, borderRadius: '50%', border: '2px solid var(--accent-cyan)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-cyan)' }}>
+                        <LinkedinIcon width={20} height={20} />
                       </a>
                     )}
                   </div>

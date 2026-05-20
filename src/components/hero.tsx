@@ -67,7 +67,7 @@ export default function Hero() {
 
         <div className="flex flex-col lg:flex-row h-full min-h-screen">
           {/* Left content - vertically centered */}
-          <div className="flex-1 relative z-10 flex flex-col justify-center px-6 py-20 lg:px-0" style={{ paddingLeft: 'max(48px, 8vw)', paddingRight: '24px' }}>
+          <div className="flex-1 relative z-10 flex flex-col justify-center px-6 sm:px-12 lg:pl-[8vw] lg:pr-6 py-20 lg:py-0">
             <div className="max-w-[600px]">
               <p className="text-[1.1rem] text-[var(--accent-cyan)] font-medium tracking-[2px] uppercase mb-3 opacity-0 animate-[fadeInUp_0.6s_ease_0.2s_forwards]">
                 Hi, I&apos;m

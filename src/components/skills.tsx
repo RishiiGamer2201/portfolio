@@ -44,8 +44,8 @@ export default function Skills() {
           <h2 className="section-title">Skills & Technologies</h2>
         </div>
 
-        {/* skills-grid: exact old CSS — 3 cols, gap 24px */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+        {/* skills-grid: responsive columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((cat) => (
             <div
               key={cat.title}

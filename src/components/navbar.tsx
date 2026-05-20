@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { usePathname } from 'next/navigation'
 
 const navItems = [
   { href: '#about', label: 'About' },
@@ -17,9 +18,12 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
+  const pathname = usePathname()
 
   // Scroll-based active section detection (more reliable than IntersectionObserver)
   const handleScroll = useCallback(() => {
+    if (pathname !== '/') return
+
     setScrolled(window.scrollY > 50)
 
     const scrollPos = window.scrollY + 120 // offset for navbar + breathing room
@@ -37,15 +41,24 @@ export default function Navbar() {
     })
 
     setActiveSection(currentSection)
-  }, [])
+  }, [pathname])
 
   useEffect(() => {
+    if (pathname !== '/') {
+      setScrolled(true) // Always scrolled look on subpages
+      return
+    }
     window.addEventListener('scroll', handleScroll, { passive: true })
     handleScroll() // run once on mount
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [handleScroll])
+  }, [handleScroll, pathname])
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (pathname !== '/') {
+      // Let standard navigation happen by setting window.location.href or letting standard link navigation handle it
+      setMobileOpen(false)
+      return
+    }
     e.preventDefault()
     const target = document.querySelector(href)
     if (target) {
@@ -64,7 +77,7 @@ export default function Navbar() {
     >
       <div className="max-w-[1200px] mx-auto px-6 flex justify-between items-center">
         <a
-          href="#hero"
+          href={pathname === '/' ? '#hero' : '/#hero'}
           onClick={(e) => handleNavClick(e, '#hero')}
           className="text-xl font-bold text-[var(--text-primary)] hover:text-[var(--accent-cyan)] transition-colors"
           style={{ fontFamily: 'var(--font-heading)' }}
@@ -77,7 +90,7 @@ export default function Navbar() {
           {navItems.map((item) => (
             <li key={item.href}>
               <a
-                href={item.href}
+                href={pathname === '/' ? item.href : `/${item.href}`}
                 onClick={(e) => handleNavClick(e, item.href)}
                 className={`text-sm font-medium transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:bg-gradient-to-r after:from-[var(--accent-cyan)] after:to-[var(--accent-purple)] after:transition-all after:duration-300 ${
                   activeSection === item.href
@@ -111,7 +124,7 @@ export default function Navbar() {
           {navItems.map((item) => (
             <li key={item.href}>
               <a
-                href={item.href}
+                href={pathname === '/' ? item.href : `/${item.href}`}
                 onClick={(e) => handleNavClick(e, item.href)}
                 className={`text-sm font-medium transition-colors ${
                   activeSection === item.href

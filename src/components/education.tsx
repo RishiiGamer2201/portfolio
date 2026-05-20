@@ -27,8 +27,8 @@ export default function Education() {
           <h2 className="section-title">Education & Scores</h2>
         </div>
 
-        {/* education-grid: exact old CSS — grid 1fr 1fr, gap 60px */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'start' }}>
+        {/* education-grid: responsive columns, gap 40px to 60px */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-[60px] items-start">
           {/* Timeline — exact old CSS: padding-left 32px, line at left 7px */}
           <div style={{ position: 'relative', paddingLeft: '32px' }}>
             {/* Vertical line */}
@@ -70,7 +70,7 @@ export default function Education() {
             <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.2rem', fontWeight: 600, marginBottom: '24px', textAlign: 'center' }}>
               Examination Scores
             </h3>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+            <div className="grid grid-cols-2 gap-3">
               {scores.map((s) => (
                 <div
                   key={s.exam}
