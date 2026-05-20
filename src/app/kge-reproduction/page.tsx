@@ -69,7 +69,15 @@ export default function KgeReproduction() {
         </Link>
 
         {/* Hero Section */}
-        <header className="mb-32 relative border border-[var(--glass-border)] bg-[var(--bg-card)] backdrop-blur-[var(--glass-blur)] rounded-3xl p-10 sm:p-14 md:p-20 lg:p-24 overflow-hidden shadow-[var(--shadow-card)]">
+        <header className="mb-32 relative overflow-hidden shadow-[var(--shadow-card)]"
+          style={{
+            background: 'var(--bg-card)',
+            border: '1px solid var(--glass-border)',
+            borderRadius: '24px',
+            padding: 'clamp(32px, 6vw, 64px) clamp(20px, 5vw, 48px)',
+            backdropFilter: 'var(--glass-blur)'
+          }}
+        >
           <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-br from-[rgba(0,245,212,0.07)] to-[rgba(123,47,247,0.07)] rounded-full blur-3xl pointer-events-none" />
           
           <div className="relative z-10">
@@ -110,7 +118,15 @@ export default function KgeReproduction() {
 
         {/* SECTION 1: Key Findings / Narrative */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 lg:gap-28 mb-36">
-          <div className="border border-[var(--glass-border)] bg-[var(--bg-card)] rounded-3xl p-8 sm:p-12 md:p-16 lg:p-20 flex flex-col justify-between shadow-[var(--shadow-card)]">
+          <div className="flex flex-col justify-between shadow-[var(--shadow-card)]"
+            style={{
+              background: 'var(--bg-card)',
+              border: '1px solid var(--glass-border)',
+              borderRadius: '24px',
+              padding: 'clamp(24px, 5vw, 40px) clamp(16px, 4vw, 32px)',
+              backdropFilter: 'var(--glass-blur)'
+            }}
+          >
             <div>
               <div className="flex items-center gap-3 mb-10">
                 <span className="p-3 rounded-xl bg-[rgba(247,47,142,0.1)] text-[var(--accent-pink)]">
@@ -128,12 +144,28 @@ export default function KgeReproduction() {
                 This demonstrates that training procedure, not model architecture, was doing most of the work on asymmetric graphs.
               </p>
             </div>
-            <div className="mt-12 p-8 md:p-10 rounded-2xl bg-[rgba(0,245,212,0.05)] border border-[rgba(0,245,212,0.1)] text-xs md:text-sm text-[var(--accent-cyan)] font-medium">
+            <div className="mt-12 rounded-2xl font-medium"
+              style={{
+                background: 'rgba(0, 245, 212, 0.05)',
+                border: '1px solid rgba(0, 245, 212, 0.1)',
+                padding: 'clamp(16px, 3vw, 24px) clamp(16px, 3vw, 24px)',
+                fontSize: 'clamp(12px, 2vw, 14px)',
+                color: 'var(--accent-cyan)'
+              }}
+            >
               💡 Gap collapsed from +0.044 to +0.001! Training trick equalized the playing field.
             </div>
           </div>
 
-          <div className="border border-[var(--glass-border)] bg-[var(--bg-card)] rounded-3xl p-8 sm:p-12 md:p-16 lg:p-20 flex flex-col justify-between shadow-[var(--shadow-card)]">
+          <div className="flex flex-col justify-between shadow-[var(--shadow-card)]"
+            style={{
+              background: 'var(--bg-card)',
+              border: '1px solid var(--glass-border)',
+              borderRadius: '24px',
+              padding: 'clamp(24px, 5vw, 40px) clamp(16px, 4vw, 32px)',
+              backdropFilter: 'var(--glass-blur)'
+            }}
+          >
             <div>
               <div className="flex items-center gap-3 mb-10">
                 <span className="p-3 rounded-xl bg-[rgba(123,47,247,0.1)] text-[var(--accent-purple)]">
@@ -150,14 +182,30 @@ export default function KgeReproduction() {
                 Its scoring function ($h + r \approx t$) dictates that if $(h, r, t)$ and $(t, r, h)$ both hold, the relation vector $r$ is forced to **exactly zero**, making it impossible for the model to distinguish direction or entities.
               </p>
             </div>
-            <div className="mt-12 p-8 md:p-10 rounded-2xl bg-[rgba(123,47,247,0.05)] border border-[rgba(123,47,247,0.1)] text-xs md:text-sm text-[#b388ff] font-medium">
+            <div className="mt-12 rounded-2xl font-medium"
+              style={{
+                background: 'rgba(123, 47, 247, 0.05)',
+                border: '1px solid rgba(123, 47, 247, 0.1)',
+                padding: 'clamp(16px, 3vw, 24px) clamp(16px, 3vw, 24px)',
+                fontSize: 'clamp(12px, 2vw, 14px)',
+                color: '#b388ff'
+              }}
+            >
               ⚡ 62x HITS@1 Gap! Driven entirely by mathematical constraints of graph structure.
             </div>
           </div>
         </section>
 
         {/* SECTION 2: Interactive Metric Dashboard */}
-        <section className="border border-[var(--glass-border)] bg-[var(--bg-card)] rounded-3xl p-8 sm:p-12 md:p-16 lg:p-24 mb-36 shadow-[var(--shadow-card)]">
+        <section className="mb-36 shadow-[var(--shadow-card)]"
+          style={{
+            background: 'var(--bg-card)',
+            border: '1px solid var(--glass-border)',
+            borderRadius: '24px',
+            padding: 'clamp(24px, 6vw, 56px) clamp(16px, 5vw, 48px)',
+            backdropFilter: 'var(--glass-blur)'
+          }}
+        >
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-20 border-b border-[var(--glass-border)] pb-12">
             <div>
               <h2 className="text-3xl font-bold font-heading mb-2">Interactive Results Dashboard</h2>
@@ -184,14 +232,26 @@ export default function KgeReproduction() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-28 items-start">
             {/* Metrics List (2 cols on large) */}
             <div className="lg:col-span-2 space-y-14">
-              <div className="p-10 rounded-[32px] bg-[rgba(255,255,255,0.02)] border border-[var(--glass-border)]">
+              <div className="rounded-[24px]"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.02)',
+                  border: '1px solid var(--glass-border)',
+                  padding: '24px 20px'
+                }}
+              >
                 <span className="text-[10px] uppercase font-bold tracking-wider text-[var(--text-muted)] block mb-2">Dataset Profile</span>
                 <span className="text-base font-semibold text-[var(--text-primary)] block mb-3">{currentDataset.name}</span>
                 <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{currentDataset.symmetryDesc}</p>
               </div>
 
               {/* Terminal Table representation */}
-              <div className="font-mono text-xs border border-[var(--glass-border)] bg-[rgba(5,7,12,0.9)] p-10 rounded-[32px] overflow-x-auto shadow-inner">
+              <div className="font-mono text-xs overflow-x-auto shadow-inner rounded-[24px]"
+                style={{
+                  background: 'rgba(5, 7, 12, 0.9)',
+                  border: '1px solid var(--glass-border)',
+                  padding: '24px 20px'
+                }}
+              >
                 <div className="text-[var(--text-muted)] border-b border-[rgba(255,255,255,0.06)] pb-4 mb-6 grid grid-cols-4 gap-2 text-right">
                   <span className="text-left font-bold">Metric</span>
                   <span>TransE</span>
@@ -210,14 +270,24 @@ export default function KgeReproduction() {
                 ))}
               </div>
 
-              <div className="p-10 rounded-[32px] bg-[rgba(123,47,247,0.03)] border border-[rgba(123,47,247,0.1)]">
+              <div className="rounded-[24px]"
+                style={{
+                  background: 'rgba(123, 47, 247, 0.03)',
+                  border: '1px solid rgba(123, 47, 247, 0.1)',
+                  padding: '24px 20px'
+                }}
+              >
                 <span className="text-xs font-bold text-[#b388ff] block mb-2">Reproduction Insight:</span>
                 <p className="text-xs md:text-sm text-[var(--text-secondary)] leading-relaxed">{currentDataset.finding}</p>
               </div>
             </div>
 
             {/* Visual Bar Charts (3 cols on large) */}
-            <div className="lg:col-span-3 border border-[var(--glass-border)] bg-[rgba(0,0,0,0.15)] rounded-3xl p-8 sm:p-12 md:p-16 lg:p-20">
+            <div className="lg:col-span-3 border border-[var(--glass-border)] bg-[rgba(0,0,0,0.15)] rounded-3xl"
+              style={{
+                padding: 'clamp(20px, 4vw, 36px) clamp(16px, 4vw, 32px)'
+              }}
+            >
               <h4 className="text-base font-semibold font-heading mb-8 flex items-center gap-1.5 text-[var(--text-primary)]">
                 <BarChart3 size={18} className="text-[var(--accent-cyan)]" /> Metric Gap Visualization
               </h4>
@@ -243,7 +313,12 @@ export default function KgeReproduction() {
                         </span>
                       </div>
                       
-                      <div className="space-y-5 bg-[rgba(255,255,255,0.02)] p-8 rounded-[32px] border border-[rgba(255,255,255,0.04)]">
+                      <div className="space-y-5 bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.04)]"
+                        style={{
+                          borderRadius: '16px',
+                          padding: '20px 24px'
+                        }}
+                      >
                         {/* TransE Bar */}
                         <div className="h-3 w-full bg-[rgba(255,255,255,0.04)] rounded-full overflow-hidden">
                           <motion.div 
@@ -295,8 +370,16 @@ export default function KgeReproduction() {
           </div>
         </section>
 
-        {/* SECTION 3: Mathematical Symmetry Visualizer */}
-        <section className="border border-[var(--glass-border)] bg-[var(--bg-card)] rounded-3xl p-8 sm:p-12 md:p-16 lg:p-24 mb-36 shadow-[var(--shadow-card)]">
+        {/* SECTION 3: Mathematical Symmetry Proof */}
+        <section className="mb-36 shadow-[var(--shadow-card)]"
+          style={{
+            background: 'var(--bg-card)',
+            border: '1px solid var(--glass-border)',
+            borderRadius: '24px',
+            padding: 'clamp(24px, 6vw, 56px) clamp(16px, 5vw, 48px)',
+            backdropFilter: 'var(--glass-blur)'
+          }}
+        >
           <div className="mb-20">
             <h2 className="text-3xl font-bold font-heading mb-3 flex items-center gap-2">
               <RotateCw className="text-[var(--accent-cyan)] animate-spin-slow" /> Why TransE Fails: Mathematical Proof
@@ -340,7 +423,14 @@ export default function KgeReproduction() {
                     <p>
                       If a relation is <span className="text-[var(--accent-pink)] font-semibold">symmetric</span> (e.g. Spouse, Also See), both {"$(h, r, t)$"} and {"$(t, r, h)$"} must hold simultaneously:
                     </p>
-                    <div className="bg-[rgba(5,7,12,0.9)] p-8 md:p-10 rounded-[32px] border border-[var(--glass-border)] font-mono text-xs md:text-sm text-[var(--text-primary)] space-y-5 my-10">
+                    <div className="font-mono text-xs md:text-sm text-[var(--text-primary)] space-y-5 my-10"
+                      style={{
+                        background: 'rgba(5, 7, 12, 0.9)',
+                        border: '1px solid var(--glass-border)',
+                        borderRadius: '24px',
+                        padding: 'clamp(20px, 4vw, 32px)'
+                      }}
+                    >
                       <div>1) {"$\\mathbf{h} + \\mathbf{r} = \\mathbf{t}$"}</div>
                       <div>2) {"$\\mathbf{t} + \\mathbf{r} = \\mathbf{h}$"}</div>
                       <div className="border-t border-[rgba(255,255,255,0.08)] mt-3 pt-2 text-[var(--accent-pink)] font-bold">
@@ -362,7 +452,14 @@ export default function KgeReproduction() {
                     <p>
                       If a relation is <span className="text-[var(--accent-cyan)] font-semibold">symmetric</span>, both directions must be modeled:
                     </p>
-                    <div className="bg-[rgba(5,7,12,0.9)] p-8 md:p-10 rounded-[32px] border border-[var(--glass-border)] font-mono text-xs md:text-sm text-[var(--text-primary)] space-y-5 my-10">
+                    <div className="font-mono text-xs md:text-sm text-[var(--text-primary)] space-y-5 my-10"
+                      style={{
+                        background: 'rgba(5, 7, 12, 0.9)',
+                        border: '1px solid var(--glass-border)',
+                        borderRadius: '24px',
+                        padding: 'clamp(20px, 4vw, 32px)'
+                      }}
+                    >
                       <div>1) {"$\\mathbf{t} = \\mathbf{h} \\circ \\mathbf{r}$"}</div>
                       <div>2) {"$\\mathbf{h} = \\mathbf{t} \circ \\mathbf{r}$"}</div>
                       <div className="border-t border-[rgba(255,255,255,0.08)] mt-3 pt-2 text-[var(--accent-cyan)] font-bold">
@@ -382,7 +479,11 @@ export default function KgeReproduction() {
             </div>
 
             {/* Visual Vector Grid (2 cols) */}
-            <div className="lg:col-span-2 flex flex-col items-center justify-center border border-[var(--glass-border)] bg-[rgba(0,0,0,0.2)] p-10 md:p-14 lg:p-16 rounded-[32px] min-h-[480px]">
+            <div className="lg:col-span-2 flex flex-col items-center justify-center border border-[var(--glass-border)] bg-[rgba(0,0,0,0.2)] rounded-[24px] min-h-[480px]"
+              style={{
+                padding: 'clamp(20px, 4vw, 32px)'
+              }}
+            >
               <span className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] mb-6 block">Interactive Complex Vector Map</span>
 
               <div className="relative w-48 h-48 border border-[rgba(255,255,255,0.08)] rounded-full flex items-center justify-center">
@@ -465,7 +566,15 @@ export default function KgeReproduction() {
         <section className="grid grid-cols-1 lg:grid-cols-3 gap-16 lg:gap-20 mb-32">
           
           {/* Symmetry Patterns Pie */}
-          <div className="border border-[var(--glass-border)] bg-[var(--bg-card)] rounded-3xl p-10 md:p-12 lg:p-14 flex flex-col justify-between shadow-[var(--shadow-card)]">
+          <div className="flex flex-col justify-between shadow-[var(--shadow-card)]"
+            style={{
+              background: 'var(--bg-card)',
+              border: '1px solid var(--glass-border)',
+              borderRadius: '24px',
+              padding: 'clamp(24px, 5vw, 40px) clamp(16px, 4vw, 32px)',
+              backdropFilter: 'var(--glass-blur)'
+            }}
+          >
             <div>
               <h3 className="text-xl font-bold font-heading mb-2 text-[var(--text-primary)]">Symmetry Patterns</h3>
               <p className="text-xs text-[var(--text-secondary)] mb-6">FB15k-237 relation distribution by symmetry score.</p>
@@ -549,7 +658,15 @@ export default function KgeReproduction() {
           </div>
 
           {/* Cardinality Types Pie */}
-          <div className="border border-[var(--glass-border)] bg-[var(--bg-card)] rounded-3xl p-10 md:p-12 lg:p-14 flex flex-col justify-between shadow-[var(--shadow-card)]">
+          <div className="flex flex-col justify-between shadow-[var(--shadow-card)]"
+            style={{
+              background: 'var(--bg-card)',
+              border: '1px solid var(--glass-border)',
+              borderRadius: '24px',
+              padding: 'clamp(24px, 5vw, 40px) clamp(16px, 4vw, 32px)',
+              backdropFilter: 'var(--glass-blur)'
+            }}
+          >
             <div>
               <h3 className="text-xl font-bold font-heading mb-2 text-[var(--text-primary)]">Cardinality Types</h3>
               <p className="text-xs text-[var(--text-secondary)] mb-6">FB15k-237 relation mapping complexity distribution.</p>
@@ -652,7 +769,15 @@ export default function KgeReproduction() {
           </div>
 
           {/* Histogram distribution */}
-          <div className="border border-[var(--glass-border)] bg-[var(--bg-card)] rounded-3xl p-10 md:p-12 lg:p-14 flex flex-col justify-between shadow-[var(--shadow-card)]">
+          <div className="flex flex-col justify-between shadow-[var(--shadow-card)]"
+            style={{
+              background: 'var(--bg-card)',
+              border: '1px solid var(--glass-border)',
+              borderRadius: '24px',
+              padding: 'clamp(24px, 5vw, 40px) clamp(16px, 4vw, 32px)',
+              backdropFilter: 'var(--glass-blur)'
+            }}
+          >
             <div>
               <h3 className="text-xl font-bold font-heading mb-2 text-[var(--text-primary)]">Symmetry Score Distribution</h3>
               <p className="text-xs text-[var(--text-secondary)] mb-6">Scores per relation (0 = asymmetric, 1 = symmetric).</p>
@@ -690,7 +815,15 @@ export default function KgeReproduction() {
         </section>
 
         {/* NEW SECTION: Deep Graph Topology Diagnostics */}
-        <section className="border border-[var(--glass-border)] bg-[var(--bg-card)] rounded-3xl p-10 md:p-16 lg:p-20 mb-32 shadow-[var(--shadow-card)] relative overflow-hidden">
+        <section className="mb-32 shadow-[var(--shadow-card)] relative overflow-hidden"
+          style={{
+            background: 'var(--bg-card)',
+            border: '1px solid var(--glass-border)',
+            borderRadius: '24px',
+            padding: 'clamp(24px, 6vw, 56px) clamp(16px, 5vw, 48px)',
+            backdropFilter: 'var(--glass-blur)'
+          }}
+        >
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[rgba(123,47,247,0.02)] to-[rgba(0,245,212,0.02)] pointer-events-none" />
           
           <div className="mb-16 relative z-10">
@@ -712,7 +845,11 @@ export default function KgeReproduction() {
             <div className="lg:col-span-3 space-y-10">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Degree Statistics Card */}
-                <div className="p-8 md:p-10 rounded-3xl bg-[rgba(255,255,255,0.02)] border border-[var(--glass-border)] hover:border-[rgba(0,245,212,0.3)] transition-all">
+                <div className="rounded-3xl bg-[rgba(255,255,255,0.02)] border border-[var(--glass-border)] hover:border-[rgba(0,245,212,0.3)] transition-all"
+                  style={{
+                    padding: 'clamp(20px, 4vw, 32px)'
+                  }}
+                >
                   <div className="text-[var(--accent-cyan)] text-xs font-bold uppercase tracking-wider mb-4">Entity Degree Stats</div>
                   <div className="space-y-4 text-xs md:text-sm">
                     <div className="flex justify-between">
@@ -735,7 +872,11 @@ export default function KgeReproduction() {
                 </div>
 
                 {/* Split Verification & Leakage Card */}
-                <div className="p-8 md:p-10 rounded-3xl bg-[rgba(255,255,255,0.02)] border border-[var(--glass-border)] hover:border-[rgba(123,47,247,0.3)] transition-all">
+                <div className="rounded-3xl bg-[rgba(255,255,255,0.02)] border border-[var(--glass-border)] hover:border-[rgba(123,47,247,0.3)] transition-all"
+                  style={{
+                    padding: 'clamp(20px, 4vw, 32px)'
+                  }}
+                >
                   <div className="text-[var(--accent-purple)] text-xs font-bold uppercase tracking-wider mb-4">Rigorous Quality Gate</div>
                   <div className="space-y-4 text-xs md:text-sm">
                     <div className="flex justify-between">
@@ -759,7 +900,11 @@ export default function KgeReproduction() {
               </div>
 
               {/* Sampling Efficiency & Hub Dynamics */}
-              <div className="p-8 md:p-10 rounded-3xl bg-[rgba(255,255,255,0.01)] border border-[var(--glass-border)]">
+              <div className="rounded-3xl bg-[rgba(255,255,255,0.01)] border border-[var(--glass-border)]"
+                style={{
+                  padding: 'clamp(20px, 4vw, 32px)'
+                }}
+              >
                 <h4 className="text-base font-semibold mb-3 text-[var(--text-primary)]">Negative Sampling Efficiency Profile</h4>
                 <p className="text-xs md:text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
                   With <strong className="text-[var(--text-primary)]">14,541 total entities</strong> in the graph, drawing <strong className="text-[var(--accent-cyan)]">N = 256</strong> negative samples yields only a <strong className="text-emerald-400">~1.76% probability</strong> of accidentally sampling a true positive. This explains why standard negative sampling remains highly efficient without expensive verification.
@@ -774,7 +919,11 @@ export default function KgeReproduction() {
             </div>
 
             {/* Right Column: Relations Table (2 cols) */}
-            <div className="lg:col-span-2 border border-[var(--glass-border)] bg-[rgba(0,0,0,0.15)] rounded-3xl p-10 md:p-12">
+            <div className="lg:col-span-2 border border-[var(--glass-border)] bg-[rgba(0,0,0,0.15)] rounded-3xl"
+              style={{
+                padding: 'clamp(20px, 4vw, 32px)'
+              }}
+            >
               <h4 className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] mb-6">
                 Key Relations to Watch (FB15k-237)
               </h4>
@@ -819,7 +968,15 @@ export default function KgeReproduction() {
         </section>
 
         {/* SECTION 5: Uniform vs Adversarial negative sampling simulator */}
-        <section className="border border-[var(--glass-border)] bg-[var(--bg-card)] rounded-3xl p-10 md:p-16 lg:p-20 mb-32 shadow-[var(--shadow-card)]">
+        <section className="mb-32 shadow-[var(--shadow-card)]"
+          style={{
+            background: 'var(--bg-card)',
+            border: '1px solid var(--glass-border)',
+            borderRadius: '24px',
+            padding: 'clamp(24px, 6vw, 56px) clamp(16px, 5vw, 48px)',
+            backdropFilter: 'var(--glass-blur)'
+          }}
+        >
           <div className="mb-16">
             <h2 className="text-3xl font-bold font-heading mb-3 flex items-center gap-2">
               <Activity className="text-[var(--accent-cyan)]" /> Training Procedure Simulator
@@ -864,7 +1021,11 @@ export default function KgeReproduction() {
             </div>
 
             {/* Simulated Chart visual (3 cols) */}
-            <div className="lg:col-span-3 border border-[var(--glass-border)] bg-[rgba(0,0,0,0.15)] rounded-3xl p-10 md:p-14 lg:p-16 min-h-[300px] flex flex-col justify-between shadow-[var(--shadow-card)]">
+            <div className="lg:col-span-3 border border-[var(--glass-border)] bg-[rgba(0,0,0,0.15)] rounded-3xl min-h-[300px] flex flex-col justify-between shadow-[var(--shadow-card)]"
+              style={{
+                padding: 'clamp(20px, 4vw, 32px)'
+              }}
+            >
               <div>
                 <span className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider block mb-6">
                   Simulated MRR Scores (FB15k-237)
@@ -916,7 +1077,12 @@ export default function KgeReproduction() {
         </section>
 
         {/* SECTION 6: Key Takeaways */}
-        <footer className="border border-[var(--glass-border)] bg-[rgba(15,25,50,0.4)] rounded-3xl p-12 md:p-20 lg:p-24 text-center relative overflow-hidden shadow-[var(--shadow-card)] mb-16">
+        <footer className="border border-[var(--glass-border)] bg-[rgba(15,25,50,0.4)] rounded-3xl text-center relative overflow-hidden shadow-[var(--shadow-card)] mb-16"
+          style={{
+            padding: 'clamp(32px, 8vw, 80px) clamp(16px, 6vw, 64px)',
+            backdropFilter: 'var(--glass-blur)'
+          }}
+        >
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-tr from-[rgba(0,245,212,0.03)] to-[rgba(123,47,247,0.03)] pointer-events-none" />
           <h2 className="text-2xl md:text-3xl font-bold font-heading mb-6 text-[var(--text-primary)]">The Key Research Lesson</h2>
           <p className="text-sm md:text-lg text-[var(--text-secondary)] leading-relaxed max-w-[850px] mx-auto mb-8">

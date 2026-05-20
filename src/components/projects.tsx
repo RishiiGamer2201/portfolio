@@ -25,7 +25,7 @@ const projects = [
       { value: '+0.273', label: 'MRR gap (WN18RR)' },
       { value: '+0.001', label: 'MRR gap (FB15k)' },
     ],
-    links: { live: '/kge-reproduction', github: 'https://github.com/RishiiGamer2201', linkedin: 'https://www.linkedin.com/posts/rishiikumarsingh_machinelearning-knowledgegraphs-research-ugcPost-7462740269952622592-cDPM?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAE2YVd8BCtcVjHUrOqyPWKBeY1mKwEKjwhk' },
+    links: { live: '/kge-reproduction', linkedin: 'https://www.linkedin.com/posts/rishiikumarsingh_machinelearning-knowledgegraphs-research-ugcPost-7462740269952622592-cDPM?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAE2YVd8BCtcVjHUrOqyPWKBeY1mKwEKjwhk' },
     gradient: 'linear-gradient(135deg, #1b0a2a 0%, #0f1524 50%, #002e3b 100%)',
   },
   {
@@ -116,7 +116,7 @@ export default function Projects() {
               {/* Project Image */}
               <div style={{ position: 'relative', height: '200px', overflow: 'hidden' }}>
                 <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: project.gradient }}>
-                  <CpuSvg className="w-16 h-16 opacity-60 group-hover:opacity-100 group-hover:scale-[1.15] transition-all duration-300 text-[var(--accent-cyan)]" />
+                  <CpuSvg className="w-16 h-16 opacity-60 group-hover:opacity-0 group-hover:scale-[1.15] transition-all duration-300 text-[var(--accent-cyan)]" />
                 </div>
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ position: 'absolute', inset: 0, background: 'rgba(10,14,26,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <div style={{ display: 'flex', gap: '16px' }}>
