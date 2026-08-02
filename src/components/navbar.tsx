@@ -1,143 +1,61 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
-import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { Menu, X } from 'lucide-react'
 
-const navItems = [
-  { href: '#about', label: 'About' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#projects', label: 'Projects' },
+const links = [
+  { href: '#about', label: 'Approach' },
   { href: '#experience', label: 'Experience' },
+  { href: '#work', label: 'Work' },
+  { href: '#activity', label: 'Activity' },
+  { href: '#stack', label: 'Stack' },
   { href: '#education', label: 'Education' },
-  { href: '#certifications', label: 'Certifications' },
-  { href: '#achievements', label: 'Achievements' },
-  { href: '#contact', label: 'Contact' },
 ]
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('')
-  const pathname = usePathname()
-
-  // Scroll-based active section detection (more reliable than IntersectionObserver)
-  const handleScroll = useCallback(() => {
-    if (pathname !== '/') return
-
-    setScrolled(window.scrollY > 50)
-
-    const scrollPos = window.scrollY + 120 // offset for navbar + breathing room
-    const sections = document.querySelectorAll('section[id]')
-    let currentSection = ''
-
-    sections.forEach((section) => {
-      const el = section as HTMLElement
-      const top = el.offsetTop
-      const height = el.offsetHeight
-
-      if (scrollPos >= top && scrollPos < top + height) {
-        currentSection = `#${el.id}`
-      }
-    })
-
-    setActiveSection(currentSection)
-  }, [pathname])
+  const isHome = (window.location.pathname.replace(/\/$/, '') || '/') === '/'
 
   useEffect(() => {
-    if (pathname !== '/') {
-      setScrolled(true) // Always scrolled look on subpages
-      return
-    }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll() // run once on mount
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [handleScroll, pathname])
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (pathname !== '/') {
-      // Let standard navigation happen by setting window.location.href or letting standard link navigation handle it
-      setMobileOpen(false)
-      return
-    }
-    e.preventDefault()
-    const target = document.querySelector(href)
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' })
-    }
-    setMobileOpen(false)
-  }
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [open])
 
   return (
-    <nav
-      className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-300 ${
-        scrolled
-          ? 'bg-[rgba(10,14,26,0.92)] backdrop-blur-2xl border-b border-[var(--glass-border)] py-3'
-          : 'bg-transparent py-4'
-      }`}
-    >
-      <div className="max-w-[1200px] mx-auto px-6 flex justify-between items-center">
-        <a
-          href={pathname === '/' ? '#hero' : '/#hero'}
-          onClick={(e) => handleNavClick(e, '#hero')}
-          className="text-xl font-bold text-[var(--text-primary)] hover:text-[var(--accent-cyan)] transition-colors"
-          style={{ fontFamily: 'var(--font-heading)' }}
-        >
-          <span className="text-[var(--accent-cyan)]">&lt;</span>RKS<span className="text-[var(--accent-cyan)]"> /&gt;</span>
+    <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
+      <a className="skip-link" href="#main-content">Skip to content</a>
+      <div className="nav-shell">
+        <a className="wordmark" href={isHome ? '#home' : '/'} aria-label="Rishii Kumar Singh, home">
+          <span>RKS</span>
+          <span className="wordmark-label">Rishii Kumar Singh</span>
         </a>
 
-        {/* Desktop Nav */}
-        <ul className="hidden md:flex gap-8 items-center">
-          {navItems.map((item) => (
-            <li key={item.href}>
-              <a
-                href={pathname === '/' ? item.href : `/${item.href}`}
-                onClick={(e) => handleNavClick(e, item.href)}
-                className={`text-sm font-medium transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:bg-gradient-to-r after:from-[var(--accent-cyan)] after:to-[var(--accent-purple)] after:transition-all after:duration-300 ${
-                  activeSection === item.href
-                    ? 'text-[var(--accent-cyan)] after:w-full'
-                    : 'text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] after:w-0 hover:after:w-full'
-                }`}
-              >
-                {item.label}
-              </a>
-            </li>
+        <nav id="primary-navigation" className={`nav-links ${open ? 'is-open' : ''}`} aria-label="Primary navigation">
+          {links.map((link) => (
+            <a href={isHome ? link.href : `/${link.href}`} key={link.href} onClick={() => setOpen(false)}>{link.label}</a>
           ))}
-        </ul>
+          <a className="nav-contact" href={isHome ? '#contact' : '/#contact'} onClick={() => setOpen(false)}>Contact</a>
+        </nav>
 
-        {/* Hamburger */}
         <button
-          className="md:hidden flex flex-col gap-[5px] bg-transparent border-none cursor-pointer p-1 z-[1001]"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle navigation"
+          className="menu-button"
+          type="button"
+          aria-expanded={open}
+          aria-controls="primary-navigation"
+          aria-label={open ? 'Close navigation' : 'Open navigation'}
+          onClick={() => setOpen((value) => !value)}
         >
-          <span className={`w-[25px] h-[2px] bg-[var(--text-primary)] rounded transition-all duration-300 ${mobileOpen ? 'rotate-45 translate-x-[5px] translate-y-[5px]' : ''}`} />
-          <span className={`w-[25px] h-[2px] bg-[var(--text-primary)] rounded transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''}`} />
-          <span className={`w-[25px] h-[2px] bg-[var(--text-primary)] rounded transition-all duration-300 ${mobileOpen ? '-rotate-45 translate-x-[5px] -translate-y-[5px]' : ''}`} />
+          {open ? <X size={22} /> : <Menu size={22} />}
         </button>
-
-        {/* Mobile Nav */}
-        <ul
-          className={`md:hidden fixed top-0 ${
-            mobileOpen ? 'right-0' : '-right-full'
-          } w-[280px] h-screen bg-[rgba(10,14,26,0.97)] backdrop-blur-2xl flex flex-col pt-24 px-10 gap-6 transition-[right] duration-300 border-l border-[var(--glass-border)]`}
-        >
-          {navItems.map((item) => (
-            <li key={item.href}>
-              <a
-                href={pathname === '/' ? item.href : `/${item.href}`}
-                onClick={(e) => handleNavClick(e, item.href)}
-                className={`text-sm font-medium transition-colors ${
-                  activeSection === item.href
-                    ? 'text-[var(--accent-cyan)]'
-                    : 'text-[var(--text-secondary)] hover:text-[var(--accent-cyan)]'
-                }`}
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
       </div>
-    </nav>
+    </header>
   )
 }

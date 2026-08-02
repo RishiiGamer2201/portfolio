@@ -1,5 +1,11 @@
-<!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
+# Portfolio repository guidance
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
-<!-- END:nextjs-agent-rules -->
+- Use React and TypeScript for the interface.
+- Use Vite for development and production builds.
+- Use Tailwind CSS v4 through the Vite plugin.
+- Use Framer Motion for purposeful reveal and interaction animation.
+- Use Lenis for smooth anchor scrolling and preserve reduced-motion support.
+- Use Lucide React for interface icons and shadcn/ui primitives where they improve accessibility.
+- Keep visible copy aligned with the balanced AI/ML engineer and undergraduate researcher positioning.
+- Do not use em dashes, en dashes, or emojis in visible site copy.
+- Run `npm run build` before handing off changes.
