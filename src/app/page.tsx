@@ -31,12 +31,13 @@ const experience = [
     ],
   },
   {
-    period: 'Jun 2026 to Jul 2026',
-    role: 'Research Intern',
+    period: 'Jun 2026 to Present',
+    role: 'Research Intern and Co-Head',
     organization: 'AIMS-DTU',
     summary:
-      'Selected through multiple interview rounds for supervised AI research under Prof. Dinesh K. Vishwakarma, with work progressing toward a manuscript and conference submission.',
+      'Selected through multiple interview rounds for supervised AI research under Prof. Dinesh K. Vishwakarma, with work progressing toward a manuscript and conference submission. Appointed Co-Head of the society in September 2026.',
     evidence: [
+      "Co-lead the society's technical direction alongside the core team, covering project scoping, review standards, and member mentoring.",
       'Built version-controlled experiment pipelines for literature review, data validation, baseline evaluation, and systematic model analysis.',
       'Documented reproducible findings and failure cases while keeping unpublished research details private until submission.',
     ],
@@ -48,7 +49,7 @@ const experience = [
     summary:
       'Contributed to production-oriented AI agent infrastructure across Heliox-OS, AegisAI, and Sahidawa India.',
     evidence: [
-      'Placed in the top 4% among 43,587 participants with 2,507 points and 13 merged pull requests.',
+      'Placed 1,662 of 47,951 participants, the top 3.5%, with 2,507 points and 13 merged pull requests.',
       'Shipped context compression, crash recovery, WebSocket streaming, race-condition prevention, and dependency-aware parallelization.',
     ],
   },
@@ -59,8 +60,8 @@ const experience = [
     summary:
       'Built geospatial decision-support workflows for healthcare accessibility planning in Himachal Pradesh.',
     evidence: [
-      'Mapped road-network access for more than 500 healthcare facilities across 12 districts using Python and QGIS.',
-      'Identified more than 30 underserved regions by combining road, population, terrain, and hazard information.',
+      'Processed 488 healthcare facility records across 12 districts, joining settlement and road-closure tables with Python, pandas, and geopy.',
+      'Built interactive Folium maps of district-level accessibility to support planning discussions, with QGIS for spatial preparation.',
     ],
   },
 ]
@@ -72,8 +73,8 @@ const projects = [
     label: 'Multi-agent engineering infrastructure',
     description:
       'A Python orchestrator that coordinates coding agents across isolated Git worktrees, schedules dependency-aware tasks, and merges only after automated review and tests pass.',
-    proof: ['4 coding agents', '14 DAG tests', 'Under 200 ms editor sync'],
-    tech: ['Python', 'Git worktrees', 'DAG scheduling', 'CRDT', 'FastAPI'],
+    proof: ['4 coding agents', '14 DAG tests', 'Test-gated merges'],
+    tech: ['Python', 'Git worktrees', 'DAG scheduling', 'Vector clocks', 'CLI dashboard'],
     links: [
       { label: 'View repository', href: 'https://github.com/RishiiGamer2201/polyagent-ci', icon: Github },
     ],
@@ -95,12 +96,12 @@ const projects = [
   },
   {
     index: '03',
-    name: 'Process Reward Model for Multi-Hop QA',
+    name: 'Multi-Hop QA Retrieval Filtering',
     label: 'Reasoning evaluation for RAG',
     description:
-      'A process reward model over a HotpotQA retrieval pipeline that scores intermediate reasoning steps, filters weak retrievals, and evaluates answer quality with uncertainty-aware reporting.',
-    proof: ['Step-level scoring', '5 RAGAS metrics', 'Bootstrap confidence intervals'],
-    tech: ['Python', 'PyTorch', 'FAISS', 'Cross-encoder', 'RAGAS'],
+      'A HotpotQA retrieval pipeline that scores and filters candidate passages with a zero-shot cross-encoder, then reports answer quality through a custom metric suite with uncertainty-aware intervals.',
+    proof: ['HotpotQA distractor setting', 'Zero-shot passage filtering', 'Bootstrap confidence intervals'],
+    tech: ['Python', 'PyTorch', 'FAISS', 'Cross-encoder', 'Custom eval suite'],
     links: [
       { label: 'View repository', href: 'https://github.com/RishiiGamer2201/prm-hotpotqa', icon: Github },
     ],
@@ -121,15 +122,14 @@ const projects = [
   },
   {
     index: '05',
-    name: 'Digital Twin of Nikola Tesla',
-    label: 'Grounded conversational RAG',
+    name: 'Apna Saathi',
+    label: 'Offline assistance on constrained hardware',
     description:
-      'A deployed conversational twin grounded in Tesla writings, patents, and interviews, with passage retrieval, citations, persistent memory, streaming, and an interactive knowledge graph.',
-    proof: ['Source citations', 'Persistent memory', 'Streamed responses'],
-    tech: ['RAG', 'ChromaDB', 'Gemini', 'React', 'FastAPI'],
+      'A Hindi household-assistance assistant that runs entirely on a Jetson board with no network, pairing lexical retrieval over a local corpus with a local language model and on-device speech.',
+    proof: ['2.70 s median response', '3.64 s at p90', 'Runs fully offline'],
+    tech: ['Python', 'SQLite FTS5', 'Ollama', 'Qwen', 'Speech I/O'],
     links: [
-      { label: 'Live demo', href: 'https://logicpalette-digital-twin-tesla.hf.space/', icon: ArrowUpRight },
-      { label: 'View repository', href: 'https://github.com/RishiiGamer2201/digital-twin-tesla', icon: Github },
+      { label: 'View repository', href: 'https://github.com/RishiiGamer2201/apna-saathi', icon: Github },
     ],
     tone: 'amber',
   },
@@ -139,7 +139,7 @@ const projects = [
     label: 'Voice and gesture desktop control',
     description:
       'A multimodal desktop-control system with real-time hand tracking, ten built-in gestures, user-defined gesture training, voice commands, and a live Flask dashboard.',
-    proof: ['99.54% measured accuracy', '3,261 samples', 'Under 50 ms latency'],
+    proof: ['10 built-in gestures', 'Custom gesture training', 'Real-time hand tracking'],
     tech: ['Python', 'OpenCV', 'MediaPipe', 'KNN', 'Socket.IO'],
     links: [
       { label: 'Watch demo', href: 'https://www.youtube.com/watch?v=thcPBI7ImGQ', icon: ArrowUpRight },
@@ -177,7 +177,7 @@ const foundations = [
     type: 'Education',
     title: 'Delhi Technological University',
     detail: 'B.Tech in Environmental Engineering, 2025 to 2029',
-    note: '8.90/10 SGPA after Semester 1, independent focus in AI/ML and full-stack engineering',
+    note: '8.35/10 CGPA after first year, independent focus in AI/ML and full-stack engineering',
   },
   {
     type: 'Coursework',
@@ -399,13 +399,13 @@ export default function Home() {
           </article>
           <article className="proof-card">
             <div className="proof-meta"><span>02</span><span>Program ranking</span></div>
-            <strong>Top 4%</strong>
+            <strong>Top 3.5%</strong>
             <p>GSSoC 2026 contributor ranking</p>
           </article>
           <article className="proof-card">
             <div className="proof-meta"><span>03</span><span>Merged work</span></div>
-            <strong>13</strong>
-            <p>Open-source pull requests</p>
+            <strong>35</strong>
+            <p>Merged pull requests across 15 repositories</p>
           </article>
           <article className="proof-card">
             <div className="proof-meta"><span>04</span><span>Retrieval scope</span></div>
