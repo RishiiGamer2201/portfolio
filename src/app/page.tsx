@@ -140,7 +140,7 @@ const projects = [
     label: 'Offline assistance on constrained hardware',
     description:
       'A Hindi household-assistance assistant that runs entirely on a Jetson board with no network, pairing lexical retrieval over a local corpus with a local language model and on-device speech.',
-    proof: ['2.70 s median response', '3.64 s at p90', 'Runs fully offline'],
+    proof: ['Winning project, BHASHINI VYOMA', '2.70 s median response', 'Runs fully offline'],
     tech: ['Python', 'SQLite FTS5', 'Ollama', 'Qwen', 'Speech I/O'],
     links: [
       { label: 'View repository', href: 'https://github.com/RishiiGamer2201/apna-saathi', icon: Github },
@@ -412,7 +412,7 @@ export default function Home() {
               <a href="#work">Explore selected work <ArrowDownRight size={18} /></a>
             </Button>
             <Button asChild variant="outline" className="button button-secondary">
-              <a href="/resume.pdf" download>Download resume <Download size={17} /></a>
+              <a href="/resume.pdf" download="Rishii_Kumar_Singh_Resume.pdf">Download resume <Download size={17} /></a>
             </Button>
           </div>
           <div className="hero-links hero-reveal delay-4">
@@ -680,6 +680,7 @@ export default function Home() {
         </div>
         <div className="recognition-row">
           <div><strong>Winner</strong><span>Green Tag Case Competition, BITS Pilani APOGEE 2026</span></div>
+          <div><strong>Winner</strong><span>BHASHINI VYOMA Challenge, Apna Saathi, 2026</span></div>
           <div><strong>Third place</strong><span>BITCAMP hackathon, AIMS-DTU x TinyFish, October 2026</span></div>
           <div><strong>Top 10%</strong><span>Indian Olympiad Qualifier in Mathematics</span></div>
           <div><strong>3 times</strong><span>UPSC NDA and NA written examination qualified</span></div>
@@ -702,7 +703,7 @@ export default function Home() {
             <div className="contact-links">
               <a href="https://github.com/RishiiGamer2201" target="_blank" rel="noreferrer"><Github size={17} /> GitHub</a>
               <a href="https://www.linkedin.com/in/rishiikumarsingh/" target="_blank" rel="noreferrer"><Linkedin size={17} /> LinkedIn</a>
-              <a href="/resume.pdf" download><BookOpen size={17} /> Resume</a>
+              <a href="/resume.pdf" download="Rishii_Kumar_Singh_Resume.pdf"><BookOpen size={17} /> Resume</a>
             </div>
           </div>
         </div>

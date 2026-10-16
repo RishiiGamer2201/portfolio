@@ -1333,7 +1333,7 @@ button:focus-visible {
 
 .recognition-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   margin-top: 16px;
   border: 1px solid var(--ink);
   background: var(--acid);
