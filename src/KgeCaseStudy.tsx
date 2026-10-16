@@ -38,7 +38,7 @@ export default function KgeCaseStudy() {
   return (
     <main className="case-page">
       <div className="section-frame">
-        <a className="case-back" href="/#work"><ArrowLeft size={17} /> Back to portfolio</a>
+        <a className="case-back" href="/#research"><ArrowLeft size={17} /> Back to portfolio</a>
 
         <motion.header
           className="case-hero"

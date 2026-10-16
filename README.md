@@ -9,8 +9,8 @@ A recruiter-focused portfolio for Rishii Kumar Singh, an AI/ML engineer and unde
 ## What the site highlights
 
 - Measured AI/ML work at WESEE, Indian Navy
-- Supervised undergraduate research at AIMS-DTU
-- Top 4% performance in GirlScript Summer of Code 2026
+- Undergraduate research at AIMS-DTU and UMTRI, University of Michigan, with status-labeled research cards
+- Top 3.5% in GirlScript Summer of Code 2026
 - Multi-agent orchestration, offline multilingual retrieval, grounded RAG, and multimodal computer vision projects
 - A downloadable one-page resume and direct contact paths
 

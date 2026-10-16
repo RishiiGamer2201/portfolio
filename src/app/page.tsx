@@ -1,6 +1,8 @@
 import {
+  Anchor,
   ArrowDownRight,
   ArrowUpRight,
+  Atom,
   BookOpen,
   BrainCircuit,
   CheckCircle2,
@@ -8,10 +10,13 @@ import {
   Download,
   Eye,
   GitBranch,
+  Layers,
   Mail,
   MapPin,
   Network,
+  Orbit,
   ShieldCheck,
+  Waves,
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useEffect, useMemo, useState } from 'react'
@@ -19,6 +24,29 @@ import { Button } from '@/components/ui/button'
 import { GithubIcon as Github, LinkedinIcon as Linkedin, XIcon } from '@/components/icons/x-icon'
 
 const experience = [
+  {
+    period: 'Jun 2026 to Present',
+    role: 'Research Intern and Co-Head',
+    organization: 'AIMS-DTU',
+    summary:
+      'Selected through multiple interview rounds for supervised AI research under Prof. Dinesh K. Vishwakarma. One paper from this work is under review at ECIR 2027. Appointed Co-Head of the society in September 2026.',
+    evidence: [
+      "Co-lead the society's technical direction alongside the core team, covering project scoping, review standards, and member mentoring.",
+      'Built version-controlled experiment pipelines for literature review, data validation, baseline evaluation, and systematic model analysis.',
+      'Lead image restoration and the embedded Jetson pipeline for the society team in the MaCVi 2027 challenge at WACV 2027.',
+    ],
+  },
+  {
+    period: 'Sep 2026 to Present',
+    role: 'Remote Research Collaborator',
+    organization: 'UMTRI, University of Michigan',
+    summary:
+      'Leading the next version of the MatPredict benchmark for material segmentation and inverse rendering, working with Dr. Arpan Kusari.',
+    evidence: [
+      'Reproduced the published benchmark end to end on local hardware before extending it.',
+      'Built reproducible evaluation tooling with self-tested metrics and bootstrap confidence intervals.',
+    ],
+  },
   {
     period: 'Jun 2026 to Jul 2026',
     role: 'AI/ML Intern',
@@ -28,18 +56,6 @@ const experience = [
     evidence: [
       'Raised vessel detection mAP50 from 0.434 to 0.921 after finding 123 duplicate images and rebuilding the split.',
       'Completed eight reviewed active-learning rounds, reached 0.853 mIoU for coastal segmentation, and 97.1% ship-type accuracy.',
-    ],
-  },
-  {
-    period: 'Jun 2026 to Present',
-    role: 'Research Intern and Co-Head',
-    organization: 'AIMS-DTU',
-    summary:
-      'Selected through multiple interview rounds for supervised AI research under Prof. Dinesh K. Vishwakarma, with work progressing toward a manuscript and conference submission. Appointed Co-Head of the society in September 2026.',
-    evidence: [
-      "Co-lead the society's technical direction alongside the core team, covering project scoping, review standards, and member mentoring.",
-      'Built version-controlled experiment pipelines for literature review, data validation, baseline evaluation, and systematic model analysis.',
-      'Documented reproducible findings and failure cases while keeping unpublished research details private until submission.',
     ],
   },
   {
@@ -96,15 +112,13 @@ const projects = [
   },
   {
     index: '03',
-    name: 'Multi-Hop QA Retrieval Filtering',
-    label: 'Reasoning evaluation for RAG',
+    name: 'FormSaathi',
+    label: 'Voice agent for real web forms',
     description:
-      'A HotpotQA retrieval pipeline that scores and filters candidate passages with a zero-shot cross-encoder, then reports answer quality through a custom metric suite with uncertainty-aware intervals.',
-    proof: ['HotpotQA distractor setting', 'Zero-shot passage filtering', 'Bootstrap confidence intervals'],
-    tech: ['Python', 'PyTorch', 'FAISS', 'Cross-encoder', 'Custom eval suite'],
-    links: [
-      { label: 'View repository', href: 'https://github.com/RishiiGamer2201/prm-hotpotqa', icon: Github },
-    ],
+      'A voice assistant that fills real online forms in 12 Indian languages. It confirms every answer with the user before moving on and hands control back at payments, logins, OTPs, and captchas. Built in a two-person team at BITCAMP (AIMS-DTU x TinyFish).',
+    proof: ['Third place, BITCAMP 2026', '12 Indian languages', 'Human confirmation gates'],
+    tech: ['Voice I/O', 'Browser agent', 'TinyFish Search', 'TinyFish Fetch'],
+    links: [],
     tone: 'violet',
   },
   {
@@ -149,16 +163,69 @@ const projects = [
   },
 ]
 
+const research = [
+  {
+    area: 'Knowledge graphs and LLMs',
+    where: 'AIMS-DTU, with Prof. Dinesh K. Vishwakarma',
+    role: 'Knowledge-graph completion and LLM-built knowledge graphs, starting from controlled reproductions of TransE and RotatE.',
+    status: 'Under review, ECIR 2027',
+    state: 'review',
+    icon: Network,
+    link: { label: 'Read the reproduction study', href: '/kge-reproduction', external: false },
+  },
+  {
+    area: 'Material perception',
+    where: 'UMTRI, University of Michigan, with Dr. Arpan Kusari',
+    role: 'Leading the next version of the MatPredict benchmark for material segmentation and inverse rendering.',
+    status: 'In progress',
+    state: 'active',
+    icon: Layers,
+  },
+  {
+    area: 'Physical reasoning in vision',
+    where: 'Collaborative dataset and benchmark project',
+    role: 'Leading the real-world data collection and ground-truth documentation.',
+    status: 'Targeting CVPR 2027',
+    state: 'active',
+    icon: Atom,
+  },
+  {
+    area: 'Underwater image quality',
+    where: 'With a collaborator',
+    role: 'A paper on underwater image quality, written up and being refined before submission.',
+    status: 'In preparation',
+    state: 'draft',
+    icon: Waves,
+  },
+  {
+    area: 'MaCVi 2027 challenge',
+    where: 'WACV 2027 workshop, team aimslabs',
+    role: 'Leading image restoration and the embedded Jetson pipeline for the underwater restoration and segmentation challenge.',
+    status: 'Final results Oct 2026',
+    state: 'active',
+    icon: Anchor,
+  },
+  {
+    area: 'Learn2Design 2026',
+    where: 'NeurIPS 2026 Competition Track, solo',
+    role: 'Optimizing gravitational-wave detector designs in a differentiable JAX simulator. Also filed a bug report on the official repository.',
+    status: 'Submitted, results pending',
+    state: 'review',
+    icon: Orbit,
+    link: { label: 'View issue #25', href: 'https://github.com/artificial-scientist-lab/Learn2Design-2026/issues/25', external: true },
+  },
+]
+
 const capabilities = [
   {
     title: 'AI and ML',
     icon: BrainCircuit,
-    items: ['PyTorch', 'TensorFlow', 'Scikit-learn', 'Hugging Face', 'RAG', 'NLP', 'LLMs', 'Active learning'],
+    items: ['PyTorch', 'JAX', 'TensorFlow', 'Scikit-learn', 'Hugging Face', 'RAG', 'NLP', 'LLMs', 'Active learning'],
   },
   {
     title: 'Vision systems',
     icon: Eye,
-    items: ['OpenCV', 'MediaPipe', 'YOLO OBB', 'Segmentation', 'ONNX', 'Classification', 'Human review'],
+    items: ['OpenCV', 'MediaPipe', 'YOLO OBB', 'Segmentation', 'Image restoration', 'ONNX', 'Jetson', 'Human review'],
   },
   {
     title: 'Product engineering',
@@ -338,7 +405,7 @@ export default function Home() {
             I build AI systems that survive contact with <span>real data.</span>
           </h1>
           <p className="hero-intro hero-reveal delay-2">
-            I work across computer vision, grounded language systems, AI agents, and product engineering. My focus is simple: measured outcomes, explicit failure handling, and software people can actually use.
+            I work across computer vision, grounded language systems, AI agents, and product engineering, with ongoing research at AIMS-DTU and UMTRI, University of Michigan. My focus is simple: measured outcomes, explicit failure handling, and software people can actually use.
           </p>
           <div className="hero-actions hero-reveal delay-3">
             <Button asChild className="button button-primary">
@@ -408,9 +475,9 @@ export default function Home() {
             <p>Merged pull requests across 15 repositories</p>
           </article>
           <article className="proof-card">
-            <div className="proof-meta"><span>04</span><span>Retrieval scope</span></div>
-            <strong>6,845</strong>
-            <p>Official-law chunks indexed</p>
+            <div className="proof-meta"><span>04</span><span>Research</span></div>
+            <strong>ECIR 2027</strong>
+            <p>Paper under review</p>
           </article>
         </div>
       </section>
@@ -450,7 +517,7 @@ export default function Home() {
           <div className="section-kicker light"><span>02</span><p>Experience</p></div>
           <div className="section-heading split-heading light">
             <h2>Work measured by what changed.</h2>
-            <p>Defense imagery, supervised research, open-source agent infrastructure, and geospatial decision support.</p>
+            <p>Supervised research in India and the US, defense imagery, open-source agent infrastructure, and geospatial decision support.</p>
           </div>
           <div className="experience-list">
             {experience.map((item, index) => (
@@ -480,11 +547,48 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="research" className="section-frame section-block research-section">
+        <div className="section-kicker"><span>03</span><p>Research</p></div>
+        <div className="section-heading split-heading">
+          <h2>Open questions, honestly labeled.</h2>
+          <p>Unpublished work is described by area and role until it is published. Every status below is current as of October 2026.</p>
+        </div>
+        <div className="research-grid">
+          {research.map((item, index) => (
+            <motion.article
+              className={`research-card state-${item.state}`}
+              key={item.area}
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: (index % 3) * 0.06 }}
+            >
+              <div className="research-top">
+                <span className="research-status"><i aria-hidden="true" />{item.status}</span>
+                <item.icon size={22} aria-hidden="true" />
+              </div>
+              <h3>{item.area}</h3>
+              <p className="research-where">{item.where}</p>
+              <p className="research-role">{item.role}</p>
+              {item.link && (
+                <a
+                  className="research-link"
+                  href={item.link.href}
+                  {...(item.link.external ? { target: '_blank', rel: 'noreferrer' } : {})}
+                >
+                  {item.link.label} <ArrowUpRight size={15} />
+                </a>
+              )}
+            </motion.article>
+          ))}
+        </div>
+      </section>
+
       <section id="work" className="section-frame section-block">
-        <div className="section-kicker"><span>03</span><p>Selected work</p></div>
+        <div className="section-kicker"><span>04</span><p>Selected work</p></div>
         <div className="section-heading split-heading">
           <h2>Systems, not screenshots.</h2>
-          <p>Six projects that show how I handle orchestration, local inference, evaluation, retrieval, safety, multimodal interaction, and end-to-end product work.</p>
+          <p>Six projects that show how I handle orchestration, local inference, agent safety, retrieval, edge deployment, multimodal interaction, and end-to-end product work.</p>
         </div>
         <div className="projects-grid">
           {projects.map((project) => (
@@ -520,7 +624,7 @@ export default function Home() {
 
       <section id="activity" className="section-block activity-section">
         <div className="section-frame">
-          <div className="section-kicker light"><span>04</span><p>Open-source pulse</p></div>
+          <div className="section-kicker light"><span>05</span><p>Open-source pulse</p></div>
           <div className="section-heading split-heading light">
             <h2>The work stays live.</h2>
             <p>A rolling view of public GitHub activity, plus the profiles where I build, solve, and share.</p>
@@ -542,7 +646,7 @@ export default function Home() {
 
       <section id="stack" className="section-block stack-section">
         <div className="section-frame">
-          <div className="section-kicker"><span>05</span><p>Technical range</p></div>
+          <div className="section-kicker"><span>06</span><p>Technical range</p></div>
           <div className="section-heading split-heading">
             <h2>From model behavior to product behavior.</h2>
             <p>I work across the full path: data inspection, experiments, APIs, interfaces, deployment, and agent-assisted engineering.</p>
@@ -559,7 +663,7 @@ export default function Home() {
       </section>
 
       <section id="education" className="section-frame section-block foundations-section">
-        <div className="section-kicker"><span>06</span><p>Foundations</p></div>
+        <div className="section-kicker"><span>07</span><p>Foundations</p></div>
         <div className="section-heading split-heading">
           <h2>Academic base and independent depth.</h2>
           <p>My degree provides the systems context. Focused AI coursework and projects provide the technical depth.</p>
@@ -576,6 +680,7 @@ export default function Home() {
         </div>
         <div className="recognition-row">
           <div><strong>Winner</strong><span>Green Tag Case Competition, BITS Pilani APOGEE 2026</span></div>
+          <div><strong>Third place</strong><span>BITCAMP hackathon, AIMS-DTU x TinyFish, October 2026</span></div>
           <div><strong>Top 10%</strong><span>Indian Olympiad Qualifier in Mathematics</span></div>
           <div><strong>3 times</strong><span>UPSC NDA and NA written examination qualified</span></div>
         </div>
@@ -584,12 +689,12 @@ export default function Home() {
       <section id="contact" className="section-dark contact-section">
         <div className="section-frame contact-grid">
           <div>
-            <div className="section-kicker light"><span>07</span><p>Contact</p></div>
+            <div className="section-kicker light"><span>08</span><p>Contact</p></div>
             <h2>Have a hard AI problem worth measuring?</h2>
           </div>
           <div className="contact-copy">
             <p>
-              I am interested in AI engineering roles, research collaborations, and teams building reliable agentic or multimodal systems.
+              I am open to research positions, AI/ML and software engineering internships, and teams building reliable agentic or multimodal systems.
             </p>
             <a className="contact-email" href="mailto:rishiikumarsingh2201@gmail.com">
               <Mail size={20} /> rishiikumarsingh2201@gmail.com <ArrowUpRight size={20} />
