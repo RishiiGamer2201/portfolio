@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Resume-sheet design. Tokens first, dark mode via prefers-color-scheme. */
+/* Resume-sheet design. Light theme only (user choice, 9 November 2026). */
 :root {
   --desk: #e9ebef;
   --sheet: #fdfcfa;
@@ -25,31 +25,6 @@
   --sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, monospace;
   color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --desk: #0e1014;
-    --sheet: #16191f;
-    --ink: #eceef2;
-    --ink-2: #c3c7d0;
-    --muted: #8d93a0;
-    --rule: #2a2e37;
-    --rule-strong: #eceef2;
-    --accent: #8ea2ff;
-    --accent-soft: #1f2640;
-    --ok: #6fd3a0;
-    --ok-soft: #15301f;
-    --wait: #f0c46a;
-    --wait-soft: #33290f;
-    --heat-0: #232731;
-    --heat-1: #2c3966;
-    --heat-2: #3d54a8;
-    --heat-3: #607ae6;
-    --heat-4: #8ea2ff;
-    --shadow: 0 1px 2px rgb(0 0 0 / 40%), 0 18px 48px rgb(0 0 0 / 35%);
-    color-scheme: dark;
-  }
 }
 
 * { box-sizing: border-box; }
@@ -102,7 +77,6 @@ img { display: block; }
 .btn:hover { transform: translateY(-1px); }
 .btn.ghost { background: var(--sheet); border-color: var(--rule); color: var(--ink); }
 .btn.solid { background: var(--accent); color: #fff; }
-@media (prefers-color-scheme: dark) { .btn.solid { color: #0e1014; } }
 
 /* Desk and sheet */
 .desk { padding: 8px 16px 64px; }
@@ -264,8 +238,9 @@ img { display: block; }
 }
 .text-button {
   display: inline-flex; align-items: center; gap: 6px;
-  background: none; border: 0; padding: 0; font: inherit; color: var(--accent); cursor: pointer;
+  background: none; border: 0; padding: 0; font: inherit; color: var(--accent); cursor: pointer; text-decoration: none;
 }
+.text-button:hover { text-decoration: underline; }
 .back { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; color: var(--muted); text-decoration: none; margin-bottom: 18px; }
 .back:hover { color: var(--accent); }
 .case .label { margin-bottom: 4px; }

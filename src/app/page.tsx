@@ -1,4 +1,4 @@
-import { ArrowUpRight, Mail, MapPin, Printer } from 'lucide-react'
+import { ArrowUpRight, Download, Mail, MapPin } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { GithubIcon, LinkedinIcon, XIcon } from '@/components/icons/x-icon'
@@ -294,9 +294,9 @@ export default function Home() {
 
         <footer className="sheet-foot">
           <span>Updated {updated}</span>
-          <button type="button" className="text-button no-print" onClick={() => window.print()}>
-            <Printer size={14} aria-hidden="true" /> Save this page as PDF
-          </button>
+          <a className="text-button no-print" href="/resume.pdf" download="Rishii_Kumar_Singh_Resume.pdf">
+            <Download size={14} aria-hidden="true" /> Download resume (PDF)
+          </a>
         </footer>
       </motion.article>
     </main>
