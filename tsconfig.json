@@ -26,6 +26,7 @@
     "src/App.tsx",
     "src/KgeCaseStudy.tsx",
     "src/app/page.tsx",
+    "src/content.ts",
     "src/components/navbar.tsx",
     "src/components/ui/button.tsx",
     "src/lib/utils.ts",

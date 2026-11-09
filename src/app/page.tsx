@@ -1,720 +1,304 @@
-import {
-  Anchor,
-  ArrowDownRight,
-  ArrowUpRight,
-  Atom,
-  BookOpen,
-  BrainCircuit,
-  CheckCircle2,
-  Code2,
-  Download,
-  Eye,
-  GitBranch,
-  Layers,
-  Mail,
-  MapPin,
-  Network,
-  Orbit,
-  ShieldCheck,
-  Waves,
-} from 'lucide-react'
+import { ArrowUpRight, Mail, MapPin, Printer } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { useEffect, useMemo, useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { GithubIcon as Github, LinkedinIcon as Linkedin, XIcon } from '@/components/icons/x-icon'
+import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { GithubIcon, LinkedinIcon, XIcon } from '@/components/icons/x-icon'
+import {
+  certifications,
+  education,
+  experience,
+  highlights,
+  honors,
+  links,
+  openSource,
+  profile,
+  projects,
+  publications,
+  research,
+  skills,
+  updated,
+} from '@/content'
 
-const experience = [
-  {
-    period: 'Jun 2026 to Present',
-    role: 'Research Intern and Co-Head',
-    organization: 'AIMS-DTU',
-    summary:
-      'Selected through multiple interview rounds for supervised AI research under Prof. Dinesh K. Vishwakarma. One paper from this work is under review at ECIR 2027. Appointed Co-Head of the society in September 2026.',
-    evidence: [
-      "Co-lead the society's technical direction alongside the core team, covering project scoping, review standards, and member mentoring.",
-      'Built version-controlled experiment pipelines for literature review, data validation, baseline evaluation, and systematic model analysis.',
-      'Lead image restoration and the embedded Jetson pipeline for the society team in the MaCVi 2027 challenge at WACV 2027.',
-    ],
-  },
-  {
-    period: 'Sep 2026 to Present',
-    role: 'Remote Research Collaborator',
-    organization: 'UMTRI, University of Michigan',
-    summary:
-      'Leading the next version of the MatPredict benchmark for material segmentation and inverse rendering, working with Dr. Arpan Kusari.',
-    evidence: [
-      'Reproduced the published benchmark end to end on local hardware before extending it.',
-      'Built reproducible evaluation tooling with self-tested metrics and bootstrap confidence intervals.',
-    ],
-  },
-  {
-    period: 'Jun 2026 to Jul 2026',
-    role: 'AI/ML Intern',
-    organization: 'WESEE, Indian Navy',
-    summary:
-      'Improved maritime vision pipelines for satellite imagery through leakage checks, active learning, oriented object detection, segmentation, and deployment-focused model export.',
-    evidence: [
-      'Raised vessel detection mAP50 from 0.434 to 0.921 after finding 123 duplicate images and rebuilding the split.',
-      'Completed eight reviewed active-learning rounds, reached 0.853 mIoU for coastal segmentation, and 97.1% ship-type accuracy.',
-    ],
-  },
-  {
-    period: 'May 2026 to Aug 2026',
-    role: 'Open Source Contributor',
-    organization: 'GirlScript Summer of Code',
-    summary:
-      'Contributed to production-oriented AI agent infrastructure across Heliox-OS, AegisAI, and Sahidawa India.',
-    evidence: [
-      'Placed 1,662 of 47,951 participants, the top 3.5%, with 2,507 points and 13 merged pull requests.',
-      'Shipped context compression, crash recovery, WebSocket streaming, race-condition prevention, and dependency-aware parallelization.',
-    ],
-  },
-  {
-    period: 'Oct 2025 to Dec 2025',
-    role: 'AI/ML Intern, Technical Development',
-    organization: 'Artha Research and Intelligence Lab',
-    summary:
-      'Built geospatial decision-support workflows for healthcare accessibility planning in Himachal Pradesh.',
-    evidence: [
-      'Processed 488 healthcare facility records across 12 districts, joining settlement and road-closure tables with Python, pandas, and geopy.',
-      'Built interactive Folium maps of district-level accessibility to support planning discussions, with QGIS for spatial preparation.',
-    ],
-  },
-]
-
-const projects = [
-  {
-    index: '01',
-    name: 'PolyAgent CI',
-    label: 'Multi-agent engineering infrastructure',
-    description:
-      'A Python orchestrator that coordinates coding agents across isolated Git worktrees, schedules dependency-aware tasks, and merges only after automated review and tests pass.',
-    proof: ['4 coding agents', '14 DAG tests', 'Test-gated merges'],
-    tech: ['Python', 'Git worktrees', 'DAG scheduling', 'Vector clocks', 'CLI dashboard'],
-    links: [
-      { label: 'View repository', href: 'https://github.com/RishiiGamer2201/polyagent-ci', icon: Github },
-    ],
-    tone: 'blue',
-  },
-  {
-    index: '02',
-    name: 'Sherpa',
-    label: 'Published local AI developer tool',
-    description:
-      'A PyPI package that reads the latest terminal error and explains what failed, why it failed, and how to fix it using a fully local language model with no API key.',
-    proof: ['Published on PyPI', '5 local model options', 'PowerShell, bash, zsh, fish'],
-    tech: ['Python', 'llama.cpp', 'GGUF', 'Local inference', 'CLI'],
-    links: [
-      { label: 'View on PyPI', href: 'https://pypi.org/project/sherpa-dev/', icon: ArrowUpRight },
-      { label: 'View repository', href: 'https://github.com/RishiiGamer2201/sherpa', icon: Github },
-    ],
-    tone: 'green',
-  },
-  {
-    index: '03',
-    name: 'FormSaathi',
-    label: 'Voice agent for real web forms',
-    description:
-      'A voice assistant that fills real online forms in 12 Indian languages. It confirms every answer with the user before moving on and hands control back at payments, logins, OTPs, and captchas. Built in a two-person team at BITCAMP (AIMS-DTU x TinyFish).',
-    proof: ['Third place, BITCAMP 2026', '12 Indian languages', 'Human confirmation gates'],
-    tech: ['Voice I/O', 'Browser agent', 'TinyFish Search', 'TinyFish Fetch'],
-    links: [],
-    tone: 'violet',
-  },
-  {
-    index: '04',
-    name: 'Nyaya Navigator',
-    label: 'Offline multilingual legal navigation',
-    description:
-      'A local-first legal information system that confirms facts, retrieves date-applicable official law, verifies each claim against sources, and refuses or escalates unsafe requests.',
-    proof: ['6,845 law chunks', 'English, Hindi, Hinglish', 'Local inference'],
-    tech: ['Python', 'FastAPI', 'React', 'EmbeddingGemma', 'OCR'],
-    links: [
-      { label: 'View repository', href: 'https://github.com/RishiiGamer2201/Gemma_Hack', icon: Github },
-    ],
-    tone: 'blue',
-  },
-  {
-    index: '05',
-    name: 'Apna Saathi',
-    label: 'Offline assistance on constrained hardware',
-    description:
-      'A Hindi household-assistance assistant that runs entirely on a Jetson board with no network, pairing lexical retrieval over a local corpus with a local language model and on-device speech.',
-    proof: ['Winning project, BHASHINI VYOMA', '2.70 s median response', 'Runs fully offline'],
-    tech: ['Python', 'SQLite FTS5', 'Ollama', 'Qwen', 'Speech I/O'],
-    links: [
-      { label: 'View repository', href: 'https://github.com/RishiiGamer2201/apna-saathi', icon: Github },
-    ],
-    tone: 'amber',
-  },
-  {
-    index: '06',
-    name: 'Jarvis',
-    label: 'Voice and gesture desktop control',
-    description:
-      'A multimodal desktop-control system with real-time hand tracking, ten built-in gestures, user-defined gesture training, voice commands, and a live Flask dashboard.',
-    proof: ['10 built-in gestures', 'Custom gesture training', 'Real-time hand tracking'],
-    tech: ['Python', 'OpenCV', 'MediaPipe', 'KNN', 'Socket.IO'],
-    links: [
-      { label: 'Watch demo', href: 'https://www.youtube.com/watch?v=thcPBI7ImGQ', icon: ArrowUpRight },
-      { label: 'View repository', href: 'https://github.com/RishiiGamer2201/gesture-desktop-control', icon: Github },
-    ],
-    tone: 'violet',
-  },
-]
-
-const research = [
-  {
-    area: 'Knowledge graphs and LLMs',
-    where: 'AIMS-DTU, with Prof. Dinesh K. Vishwakarma',
-    role: 'Knowledge-graph completion and LLM-built knowledge graphs, starting from controlled reproductions of TransE and RotatE.',
-    status: 'Under review, ECIR 2027',
-    state: 'review',
-    icon: Network,
-    link: { label: 'Read the reproduction study', href: '/kge-reproduction', external: false },
-  },
-  {
-    area: 'Material perception',
-    where: 'UMTRI, University of Michigan, with Dr. Arpan Kusari',
-    role: 'Leading the next version of the MatPredict benchmark for material segmentation and inverse rendering.',
-    status: 'In progress',
-    state: 'active',
-    icon: Layers,
-  },
-  {
-    area: 'Physical reasoning in vision',
-    where: 'Collaborative dataset and benchmark project',
-    role: 'Leading the real-world data collection and ground-truth documentation.',
-    status: 'Targeting CVPR 2027',
-    state: 'active',
-    icon: Atom,
-  },
-  {
-    area: 'Underwater image quality',
-    where: 'With a collaborator',
-    role: 'A paper on underwater image quality, written up and being refined before submission.',
-    status: 'In preparation',
-    state: 'draft',
-    icon: Waves,
-  },
-  {
-    area: 'MaCVi 2027 challenge',
-    where: 'WACV 2027 workshop, team aimslabs',
-    role: 'Leading image restoration and the embedded Jetson pipeline for the underwater restoration and segmentation challenge.',
-    status: 'Final results Oct 2026',
-    state: 'active',
-    icon: Anchor,
-  },
-  {
-    area: 'Learn2Design 2026',
-    where: 'NeurIPS 2026 Competition Track, solo',
-    role: 'Optimizing gravitational-wave detector designs in a differentiable JAX simulator. Also filed a bug report on the official repository.',
-    status: 'Submitted, results pending',
-    state: 'review',
-    icon: Orbit,
-    link: { label: 'View issue #25', href: 'https://github.com/artificial-scientist-lab/Learn2Design-2026/issues/25', external: true },
-  },
-]
-
-const capabilities = [
-  {
-    title: 'AI and ML',
-    icon: BrainCircuit,
-    items: ['PyTorch', 'JAX', 'TensorFlow', 'Scikit-learn', 'Hugging Face', 'RAG', 'NLP', 'LLMs', 'Active learning'],
-  },
-  {
-    title: 'Vision systems',
-    icon: Eye,
-    items: ['OpenCV', 'MediaPipe', 'YOLO OBB', 'Segmentation', 'Image restoration', 'ONNX', 'Jetson', 'Human review'],
-  },
-  {
-    title: 'Product engineering',
-    icon: Code2,
-    items: ['Python', 'TypeScript', 'React', 'FastAPI', 'Flask', 'PostgreSQL', 'WebSocket', 'Docker'],
-  },
-  {
-    title: 'Agent infrastructure',
-    icon: GitBranch,
-    items: ['Agent loops', 'Git worktrees', 'DAG scheduling', 'MCP', 'Evaluation', 'Failure recovery', 'GitHub'],
-  },
-]
-
-const foundations = [
-  {
-    type: 'Education',
-    title: 'Delhi Technological University',
-    detail: 'B.Tech in Environmental Engineering, 2025 to 2029',
-    note: '8.35/10 CGPA after first year, independent focus in AI/ML and full-stack engineering',
-  },
-  {
-    type: 'Coursework',
-    title: 'DeepLearning.AI',
-    detail: 'Deep Learning Specialization and Machine Learning Specialization',
-    note: 'Neural networks, CNNs, sequence models, ML strategy, classical ML, and reinforcement learning',
-  },
-  {
-    type: 'Coursework',
-    title: 'CODE, IIT Madras',
-    detail: 'Data Science and Artificial Intelligence',
-    note: 'Eight-week structured program covering data science and applied AI foundations',
-  },
-]
-
-type Contribution = {
-  date: string
-  count: number
-  level: 0 | 1 | 2 | 3 | 4
-}
-
-type ContributionResponse = {
-  total: Record<string, number>
-  contributions: Contribution[]
-}
-
-const profileLinks = [
-  { label: 'GitHub', handle: '@RishiiGamer2201', href: 'https://github.com/RishiiGamer2201', icon: Github },
-  { label: 'LinkedIn', handle: 'rishiikumarsingh', href: 'https://www.linkedin.com/in/rishiikumarsingh/', icon: Linkedin },
-  { label: 'LeetCode', handle: 'CrimsonHex', href: 'https://leetcode.com/u/CrimsonHex/', icon: Code2 },
-  { label: 'X', handle: '@RishiiSingh2201', href: 'https://x.com/RishiiSingh2201', icon: XIcon },
-]
-
-function GitHubActivity() {
-  const [response, setResponse] = useState<ContributionResponse | null>(null)
-  const [failed, setFailed] = useState(false)
-
-  useEffect(() => {
-    const controller = new AbortController()
-
-    fetch('https://github-contributions-api.jogruber.de/v4/RishiiGamer2201?y=last', {
-      signal: controller.signal,
-    })
-      .then((result) => {
-        if (!result.ok) throw new Error('Contribution feed unavailable')
-        return result.json() as Promise<ContributionResponse>
-      })
-      .then((data) => setResponse(data))
-      .catch((error: Error) => {
-        if (error.name !== 'AbortError') setFailed(true)
-      })
-
-    return () => controller.abort()
-  }, [])
-
-  const contributionData = response?.contributions ?? []
-  const leadingCells = contributionData.length
-    ? new Date(`${contributionData[0].date}T00:00:00`).getDay()
-    : 0
-  const chartCells: Array<Contribution | null> = contributionData.length
-    ? [...Array.from({ length: leadingCells }, () => null), ...contributionData]
-    : Array.from({ length: 365 }, () => null)
-  const weekCount = Math.ceil(chartCells.length / 7)
-
-  const monthLabels = useMemo(() => {
-    const seen = new Set<string>()
-    return contributionData.flatMap((day, index) => {
-      const date = new Date(`${day.date}T00:00:00`)
-      const key = `${date.getFullYear()}-${date.getMonth()}`
-      if (seen.has(key)) return []
-      seen.add(key)
-      return [{
-        label: date.toLocaleDateString('en-US', { month: 'short' }),
-        column: Math.floor((leadingCells + index) / 7) + 1,
-      }]
-    })
-  }, [contributionData, leadingCells])
-
-  const total = response
-    ? response.total.lastYear ?? Object.values(response.total).reduce((sum, value) => sum + value, 0)
-    : null
-
+function Ext({ href, children, className }: { href: string; children: ReactNode; className?: string }) {
+  const external = href.startsWith('http')
   return (
-    <div className="activity-card">
-      <div className="activity-card-head">
-        <div>
-          <span>Rolling 12 months</span>
-          <div className="activity-total">
-            <strong>{total === null ? 'Loading' : total.toLocaleString('en-IN')}</strong>
-            <p>public contributions</p>
-          </div>
-        </div>
-        <a href="https://github.com/RishiiGamer2201" target="_blank" rel="noreferrer">
-          View GitHub <ArrowUpRight size={16} />
-        </a>
-      </div>
-
-      {failed ? (
-        <div className="activity-fallback">
-          <Github size={24} />
-          <p>Live activity is temporarily unavailable.</p>
-          <a href="https://github.com/RishiiGamer2201" target="_blank" rel="noreferrer">Open GitHub profile</a>
-        </div>
-      ) : (
-        <div className="activity-chart-shell">
-          <div className="activity-chart">
-            <div
-              className="activity-months"
-              style={{ gridTemplateColumns: `repeat(${weekCount}, minmax(0, 1fr))` }}
-              aria-hidden="true"
-            >
-              {monthLabels.map((month) => (
-                <span key={`${month.label}-${month.column}`} style={{ gridColumn: `${month.column} / span 4` }}>
-                  {month.label}
-                </span>
-              ))}
-            </div>
-            <div
-              className={`activity-heatmap ${response ? 'is-ready' : 'is-loading'}`}
-              role="img"
-              aria-label={total === null ? 'Loading GitHub contribution activity' : `${total} public GitHub contributions in the last 12 months`}
-            >
-              {chartCells.map((day, index) => (
-                <span
-                  className={day ? `activity-cell level-${day.level}` : 'activity-cell level-0'}
-                  key={day?.date ?? `empty-${index}`}
-                  title={day ? `${day.count} contribution${day.count === 1 ? '' : 's'} on ${day.date}` : undefined}
-                  aria-hidden="true"
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
-      <div className="activity-card-foot">
-        <span><i className="live-dot" /> Updated from public GitHub activity</span>
-        <div className="activity-legend" aria-label="Contribution intensity legend">
-          <span>Less</span>
-          {[0, 1, 2, 3, 4].map((level) => <i className={`activity-cell level-${level}`} key={level} />)}
-          <span>More</span>
-        </div>
-      </div>
-    </div>
+    <a href={href} className={className} {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}>
+      {children}
+    </a>
   )
 }
 
-export default function Home() {
+function Section({ id, label, children }: { id?: string; label: string; children: ReactNode }) {
   return (
-    <main id="main-content">
-      <section id="home" className="hero-shell section-frame">
-        <div className="hero-copy">
-          <div className="eyebrow-row hero-reveal">
-            <span className="status-dot" aria-hidden="true" />
-            <span>AI/ML engineer and undergraduate researcher</span>
-          </div>
-          <h1 className="hero-title hero-reveal delay-1">
-            I build AI systems that survive contact with <span>real data.</span>
-          </h1>
-          <p className="hero-intro hero-reveal delay-2">
-            I work across computer vision, grounded language systems, AI agents, and product engineering, with ongoing research at AIMS-DTU and UMTRI, University of Michigan. My focus is simple: measured outcomes, explicit failure handling, and software people can actually use.
-          </p>
-          <div className="hero-actions hero-reveal delay-3">
-            <Button asChild className="button button-primary">
-              <a href="#work">Explore selected work <ArrowDownRight size={18} /></a>
-            </Button>
-            <Button asChild variant="outline" className="button button-secondary">
-              <a href="/resume.pdf" download="Rishii_Kumar_Singh_Resume.pdf">Download resume <Download size={17} /></a>
-            </Button>
-          </div>
-          <div className="hero-links hero-reveal delay-4">
-            <a href="https://github.com/RishiiGamer2201" target="_blank" rel="noreferrer">
-              <Github size={17} /> GitHub
-            </a>
-            <a href="https://www.linkedin.com/in/rishiikumarsingh/" target="_blank" rel="noreferrer">
-              <Linkedin size={17} /> LinkedIn
-            </a>
-            <span><MapPin size={17} /> New Delhi, India</span>
-          </div>
-        </div>
+    <section id={id} className="block">
+      <h2 className="label">{label}</h2>
+      {children}
+    </section>
+  )
+}
 
-        <motion.aside
-          className="systems-panel"
-          aria-label="Engineering focus map"
-          initial={{ opacity: 0, y: 28, rotate: 1.5 }}
-          animate={{ opacity: 1, y: 0, rotate: 0 }}
-          transition={{ duration: 0.7, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <div className="panel-head">
-            <span>BUILD LOG / 2026</span>
-            <span className="panel-state">ACTIVE</span>
-          </div>
-          <div className="system-map" aria-hidden="true">
-            <span className="map-line line-a" />
-            <span className="map-line line-b" />
-            <span className="map-line line-c" />
-            <div className="map-node node-input"><small>01</small><strong>PERCEIVE</strong><span>vision + language</span></div>
-            <div className="map-node node-reason"><small>02</small><strong>REASON</strong><span>retrieve + verify</span></div>
-            <div className="map-node node-ship"><small>03</small><strong>SHIP</strong><span>measure + iterate</span></div>
-            <div className="map-core"><Network size={28} /><span>RKS</span></div>
-          </div>
-          <div className="panel-foot">
-            <span>Evidence before confidence</span>
-            <ShieldCheck size={18} />
-          </div>
-        </motion.aside>
-      </section>
+function LinkRow({ items }: { items: { label: string; href: string }[] }) {
+  if (!items.length) return null
+  return (
+    <span className="link-row">
+      {items.map((l) => (
+        <Ext href={l.href} key={l.label}>
+          {l.label}
+          <ArrowUpRight size={13} aria-hidden="true" />
+        </Ext>
+      ))}
+    </span>
+  )
+}
 
-      <section className="proof-section section-frame" aria-label="Selected results">
-        <div className="proof-heading">
-          <span>Measured outcomes</span>
-          <p>Selected signals from research, engineering, and open source.</p>
-        </div>
-        <div className="proof-grid">
-          <article className="proof-card">
-            <div className="proof-meta"><span>01</span><span>Vision benchmark</span></div>
-            <strong>0.921</strong>
-            <p>Vessel detection mAP50</p>
-          </article>
-          <article className="proof-card">
-            <div className="proof-meta"><span>02</span><span>Program ranking</span></div>
-            <strong>Top 3.5%</strong>
-            <p>GSSoC 2026 contributor ranking</p>
-          </article>
-          <article className="proof-card">
-            <div className="proof-meta"><span>03</span><span>Merged work</span></div>
-            <strong>35</strong>
-            <p>Merged pull requests across 15 repositories</p>
-          </article>
-          <article className="proof-card">
-            <div className="proof-meta"><span>04</span><span>Research</span></div>
-            <strong>ECIR 2027</strong>
-            <p>Paper under review</p>
-          </article>
-        </div>
-      </section>
+type Day = { date: string; count: number; level: 0 | 1 | 2 | 3 | 4 }
 
-      <section id="about" className="section-frame section-block about-section">
-        <div className="section-kicker"><span>01</span><p>Operating principles</p></div>
-        <div className="section-heading split-heading">
-          <h2>Engineering with a research loop.</h2>
-          <p>
-            The best systems come from asking sharper questions, measuring the right failure modes, and turning the findings into a product loop. That is how I approach both research and shipping.
-          </p>
-        </div>
-        <div className="principles-grid">
-          <article>
-            <span>01 / Inspect</span>
-            <Eye size={26} />
-            <h3>Find the hidden failure</h3>
-            <p>Check the data, splits, assumptions, and confidence path before tuning the model.</p>
-          </article>
-          <article>
-            <span>02 / Verify</span>
-            <CheckCircle2 size={26} />
-            <h3>Make evidence visible</h3>
-            <p>Use reproducible evaluation, citations, human review, and explicit refusal instead of plausible output.</p>
-          </article>
-          <article>
-            <span>03 / Ship</span>
-            <GitBranch size={26} />
-            <h3>Close the product loop</h3>
-            <p>Connect models to usable interfaces, deployment constraints, monitoring, and fast iteration.</p>
-          </article>
-        </div>
-      </section>
+function useGitHub() {
+  const [repos, setRepos] = useState<number | null>(null)
+  const [days, setDays] = useState<Day[] | null>(null)
+  const [total, setTotal] = useState<number | null>(null)
 
-      <section id="experience" className="section-block section-dark">
-        <div className="section-frame">
-          <div className="section-kicker light"><span>02</span><p>Experience</p></div>
-          <div className="section-heading split-heading light">
-            <h2>Work measured by what changed.</h2>
-            <p>Supervised research in India and the US, defense imagery, open-source agent infrastructure, and geospatial decision support.</p>
-          </div>
-          <div className="experience-list">
-            {experience.map((item, index) => (
-              <motion.article
-                className="experience-row"
-                key={`${item.organization}-${item.role}`}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.22 }}
-                transition={{ duration: 0.5, delay: index * 0.04 }}
-              >
-                <div className="experience-index">{String(index + 1).padStart(2, '0')}</div>
-                <div className="experience-title">
-                  <p>{item.period}</p>
-                  <h3>{item.role}</h3>
-                  <span>{item.organization}</span>
-                </div>
-                <div className="experience-copy">
-                  <p>{item.summary}</p>
-                  <ul>
-                    {item.evidence.map((point) => <li key={point}>{point}</li>)}
-                  </ul>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
+  useEffect(() => {
+    const c = new AbortController()
+    fetch('https://api.github.com/users/RishiiGamer2201', { signal: c.signal })
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((d: { public_repos: number }) => setRepos(d.public_repos))
+      .catch(() => {})
+    fetch('https://github-contributions-api.jogruber.de/v4/RishiiGamer2201?y=last', { signal: c.signal })
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((d: { total: Record<string, number>; contributions: Day[] }) => {
+        setDays(d.contributions)
+        setTotal(d.total.lastYear ?? Object.values(d.total).reduce((a, b) => a + b, 0))
+      })
+      .catch(() => {})
+    return () => c.abort()
+  }, [])
 
-      <section id="research" className="section-frame section-block research-section">
-        <div className="section-kicker"><span>03</span><p>Research</p></div>
-        <div className="section-heading split-heading">
-          <h2>Open questions, honestly labeled.</h2>
-          <p>Unpublished work is described by area and role until it is published. Every status below is current as of October 2026.</p>
-        </div>
-        <div className="research-grid">
-          {research.map((item, index) => (
-            <motion.article
-              className={`research-card state-${item.state}`}
-              key={item.area}
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: (index % 3) * 0.06 }}
-            >
-              <div className="research-top">
-                <span className="research-status"><i aria-hidden="true" />{item.status}</span>
-                <item.icon size={22} aria-hidden="true" />
-              </div>
-              <h3>{item.area}</h3>
-              <p className="research-where">{item.where}</p>
-              <p className="research-role">{item.role}</p>
-              {item.link && (
-                <a
-                  className="research-link"
-                  href={item.link.href}
-                  {...(item.link.external ? { target: '_blank', rel: 'noreferrer' } : {})}
-                >
-                  {item.link.label} <ArrowUpRight size={15} />
-                </a>
-              )}
-            </motion.article>
-          ))}
-        </div>
-      </section>
+  return { repos, days, total }
+}
 
-      <section id="work" className="section-frame section-block">
-        <div className="section-kicker"><span>04</span><p>Selected work</p></div>
-        <div className="section-heading split-heading">
-          <h2>Systems, not screenshots.</h2>
-          <p>Six projects that show how I handle orchestration, local inference, agent safety, retrieval, edge deployment, multimodal interaction, and end-to-end product work.</p>
-        </div>
-        <div className="projects-grid">
-          {projects.map((project) => (
-            <motion.article
-              className={`project-card tone-${project.tone}`}
-              key={project.name}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.16 }}
-              transition={{ duration: 0.55 }}
-              whileHover={{ y: -5, x: -5 }}
-            >
-              <div className="project-topline"><span>{project.index}</span><span>{project.label}</span></div>
-              <h3>{project.name}</h3>
-              <p className="project-description">{project.description}</p>
-              <div className="project-proof">
-                {project.proof.map((item) => <span key={item}>{item}</span>)}
-              </div>
-              <div className="project-tech">
-                {project.tech.map((item) => <span key={item}>{item}</span>)}
-              </div>
-              <div className="project-links">
-                {project.links.map((link) => (
-                  <a href={link.href} target="_blank" rel="noreferrer" key={link.label}>
-                    {link.label} <link.icon size={16} />
-                  </a>
-                ))}
-              </div>
-            </motion.article>
-          ))}
-        </div>
-      </section>
+function Heatmap({ days, total }: { days: Day[]; total: number | null }) {
+  const cells = useMemo(() => {
+    const lead = new Date(`${days[0].date}T00:00:00`).getDay()
+    return [...Array.from({ length: lead }, () => null), ...days]
+  }, [days])
+  return (
+    <figure className="heatmap no-print">
+      <div
+        className="heatmap-grid"
+        style={{ gridTemplateColumns: `repeat(${Math.ceil(cells.length / 7)}, 1fr)` }}
+        role="img"
+        aria-label={`${total ?? ''} public GitHub contributions in the last 12 months`}
+      >
+        {cells.map((d, i) => (
+          <i
+            key={d?.date ?? `pad-${i}`}
+            className={`lv${d?.level ?? 0}${d ? '' : ' pad'}`}
+            title={d ? `${d.count} on ${d.date}` : undefined}
+          />
+        ))}
+      </div>
+      <figcaption>
+        {total !== null && <span>{total.toLocaleString('en-IN')} contributions in the last 12 months</span>}
+        <span className="legend" aria-hidden="true">
+          Less {[0, 1, 2, 3, 4].map((l) => <i className={`lv${l}`} key={l} />)} More
+        </span>
+      </figcaption>
+    </figure>
+  )
+}
 
-      <section id="activity" className="section-block activity-section">
-        <div className="section-frame">
-          <div className="section-kicker light"><span>05</span><p>Open-source pulse</p></div>
-          <div className="section-heading split-heading light">
-            <h2>The work stays live.</h2>
-            <p>A rolling view of public GitHub activity, plus the profiles where I build, solve, and share.</p>
-          </div>
-          <div className="activity-layout">
-            <GitHubActivity />
-            <aside className="profile-rail" aria-label="Developer profiles">
-              {profileLinks.map((profile) => (
-                <a href={profile.href} target="_blank" rel="noreferrer" key={profile.label}>
-                  <span className="profile-icon"><profile.icon size={20} /></span>
-                  <span><strong>{profile.label}</strong><small>{profile.handle}</small></span>
-                  <ArrowUpRight size={17} />
-                </a>
-              ))}
-            </aside>
-          </div>
-        </div>
-      </section>
+function linkIcon(kind: (typeof links)[number]['kind']) {
+  if (kind === 'github') return <GithubIcon size={15} />
+  if (kind === 'linkedin') return <LinkedinIcon size={15} />
+  if (kind === 'x') return <XIcon size={15} />
+  return <ArrowUpRight size={15} />
+}
 
-      <section id="stack" className="section-block stack-section">
-        <div className="section-frame">
-          <div className="section-kicker"><span>06</span><p>Technical range</p></div>
-          <div className="section-heading split-heading">
-            <h2>From model behavior to product behavior.</h2>
-            <p>I work across the full path: data inspection, experiments, APIs, interfaces, deployment, and agent-assisted engineering.</p>
-          </div>
-          <div className="capability-grid">
-            {capabilities.map((group) => (
-              <article key={group.title}>
-                <div className="capability-head"><group.icon size={22} /><h3>{group.title}</h3></div>
-                <div className="capability-items">{group.items.map((item) => <span key={item}>{item}</span>)}</div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+export default function Home() {
+  const gh = useGitHub()
 
-      <section id="education" className="section-frame section-block foundations-section">
-        <div className="section-kicker"><span>07</span><p>Foundations</p></div>
-        <div className="section-heading split-heading">
-          <h2>Academic base and independent depth.</h2>
-          <p>My degree provides the systems context. Focused AI coursework and projects provide the technical depth.</p>
-        </div>
-        <div className="foundations-grid">
-          {foundations.map((item) => (
-            <article key={item.title}>
-              <span>{item.type}</span>
-              <h3>{item.title}</h3>
-              <p>{item.detail}</p>
-              <small>{item.note}</small>
-            </article>
-          ))}
-        </div>
-        <div className="recognition-row">
-          <div><strong>Winner</strong><span>Green Tag Case Competition, BITS Pilani APOGEE 2026</span></div>
-          <div><strong>Winner</strong><span>BHASHINI VYOMA Challenge, Apna Saathi, 2026</span></div>
-          <div><strong>Third place</strong><span>BITCAMP hackathon, AIMS-DTU x TinyFish, October 2026</span></div>
-          <div><strong>Top 10%</strong><span>Indian Olympiad Qualifier in Mathematics</span></div>
-          <div><strong>3 times</strong><span>UPSC NDA and NA written examination qualified</span></div>
-        </div>
-      </section>
-
-      <section id="contact" className="section-dark contact-section">
-        <div className="section-frame contact-grid">
+  return (
+    <main id="main-content" className="desk">
+      <motion.article
+        className="sheet"
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <header className="sheet-head">
           <div>
-            <div className="section-kicker light"><span>08</span><p>Contact</p></div>
-            <h2>Have a hard AI problem worth measuring?</h2>
-          </div>
-          <div className="contact-copy">
-            <p>
-              I am open to research positions, AI/ML and software engineering internships, and teams building reliable agentic or multimodal systems.
-            </p>
-            <a className="contact-email" href="mailto:rishiikumarsingh2201@gmail.com">
-              <Mail size={20} /> rishiikumarsingh2201@gmail.com <ArrowUpRight size={20} />
-            </a>
-            <div className="contact-links">
-              <a href="https://github.com/RishiiGamer2201" target="_blank" rel="noreferrer"><Github size={17} /> GitHub</a>
-              <a href="https://www.linkedin.com/in/rishiikumarsingh/" target="_blank" rel="noreferrer"><Linkedin size={17} /> LinkedIn</a>
-              <a href="/resume.pdf" download="Rishii_Kumar_Singh_Resume.pdf"><BookOpen size={17} /> Resume</a>
+            <h1>{profile.name}</h1>
+            <p className="role">{profile.title}</p>
+            <div className="contact">
+              <a href={`mailto:${profile.email}`}><Mail size={14} aria-hidden="true" />{profile.email}</a>
+              <Ext href={links[0].href}><GithubIcon size={14} aria-hidden="true" />github.com/{links[0].handle}</Ext>
+              <Ext href={links[1].href}><LinkedinIcon size={14} aria-hidden="true" />in/{links[1].handle}</Ext>
+              <span><MapPin size={14} aria-hidden="true" />{profile.location}</span>
             </div>
           </div>
-        </div>
-        <footer className="site-footer section-frame">
-          <div className="site-footer-inner">
-            <span>Rishii Kumar Singh</span>
-            <span>Built with React, TypeScript, Vite, Tailwind, Framer Motion, Lenis, Lucide, and shadcn/ui.</span>
-            <span>New Delhi, India</span>
+          <img className="avatar" src={profile.avatar} alt="" width={104} height={104} />
+        </header>
+
+        <ul className="highlights" aria-label="Highlights">
+          {highlights.map((h) => (
+            <li key={h.label}>
+              <strong>{h.value}</strong>
+              <span>{h.label}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div className="columns">
+          <div className="main-col">
+            <Section id="summary" label="Summary">
+              <p className="summary">{profile.summary}</p>
+            </Section>
+
+            <Section id="publications" label="Publications">
+              <ol className="pubs">
+                {publications.map((p) => (
+                  <li key={p.title}>
+                    <div className="item-top">
+                      <span className="pub-title">{p.title}</span>
+                      <span className={`chip ${p.status === 'Accepted' ? 'ok' : 'wait'}`}>{p.status}</span>
+                    </div>
+                    <p className="meta">{p.authors.replace(/\.$/, '')}. <em>{p.venue}</em>.</p>
+                    {p.note && <p className="note">{p.note}</p>}
+                    <LinkRow items={p.links} />
+                  </li>
+                ))}
+              </ol>
+            </Section>
+
+            <Section id="research" label="Research and competitions">
+              <div className="entries">
+                {research.map((r) => (
+                  <article key={r.name}>
+                    <div className="item-top">
+                      <h3>{r.name}</h3>
+                      {r.result && <span className="result">{r.result}</span>}
+                    </div>
+                    <p className="meta">{r.context}</p>
+                    <ul>{r.points.map((pt) => <li key={pt}>{pt}</li>)}</ul>
+                    <LinkRow items={r.links} />
+                  </article>
+                ))}
+              </div>
+            </Section>
+
+            <Section id="experience" label="Experience">
+              <div className="entries">
+                {experience.map((e) => (
+                  <article key={`${e.org}-${e.role}`}>
+                    <div className="item-top">
+                      <h3>{e.role}<span className="org">, {e.org}</span></h3>
+                      <span className="period">{e.period}</span>
+                    </div>
+                    <ul>{e.points.map((pt) => <li key={pt}>{pt}</li>)}</ul>
+                  </article>
+                ))}
+              </div>
+            </Section>
+
+            <Section id="projects" label="Selected projects">
+              <div className="projects">
+                {projects.map((p) => (
+                  <article key={p.name}>
+                    <div className="item-top">
+                      <h3>{p.name}</h3>
+                      {p.tag && <span className="result">{p.tag}</span>}
+                    </div>
+                    <p>{p.line}</p>
+                    <p className="meta">
+                      {p.tech}
+                      <LinkRow items={p.links} />
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </Section>
+
+            <Section id="open-source" label="Open source">
+              <p className="lead">
+                <Ext href={openSource.search}>{openSource.summary}</Ext>
+              </p>
+              <dl className="oss">
+                {openSource.items.map((o) => (
+                  <div key={o.repo}>
+                    <dt><Ext href={o.href}>{o.repo}</Ext></dt>
+                    <dd>{o.what}</dd>
+                  </div>
+                ))}
+              </dl>
+              {gh.days && gh.days.length > 0 && <Heatmap days={gh.days} total={gh.total} />}
+            </Section>
           </div>
+
+          <aside className="side-col">
+            <Section label="Status">
+              <p className="status"><i aria-hidden="true" />{profile.status}</p>
+            </Section>
+
+            <Section label="Skills">
+              {skills.map((s) => (
+                <div className="skill-group" key={s.group}>
+                  <h3>{s.group}</h3>
+                  <div className="chips">{s.items.map((i) => <span key={i}>{i}</span>)}</div>
+                </div>
+              ))}
+            </Section>
+
+            <Section label="On GitHub">
+              <dl className="stats">
+                {gh.repos !== null && <div><dt>Public repositories</dt><dd>{gh.repos}</dd></div>}
+                {gh.total !== null && <div><dt>Contributions (year)</dt><dd>{gh.total.toLocaleString('en-IN')}</dd></div>}
+                <div><dt>Merged pull requests</dt><dd>42</dd></div>
+              </dl>
+            </Section>
+
+            <Section label="Education">
+              <h3 className="side-title">{education.school}</h3>
+              <p className="side-text">{education.degree}</p>
+              <p className="side-meta">{education.period}. {education.note}.</p>
+            </Section>
+
+            <Section label="Honors">
+              <ul className="honors">
+                {honors.map((h) => (
+                  <li key={h.what}><span>{h.what}</span><small>{h.when}</small></li>
+                ))}
+              </ul>
+            </Section>
+
+            <Section label="Certifications">
+              <ul className="plain">
+                {certifications.map((c) => <li key={c.what}><Ext href={c.href}>{c.what}</Ext></li>)}
+              </ul>
+            </Section>
+
+            <Section label="Elsewhere">
+              <ul className="elsewhere">
+                {links.map((l) => (
+                  <li key={l.label}>
+                    <Ext href={l.href}>
+                      {linkIcon(l.kind)}
+                      <span>{l.label}</span>
+                      <small>{l.handle}</small>
+                    </Ext>
+                  </li>
+                ))}
+              </ul>
+            </Section>
+          </aside>
+        </div>
+
+        <footer className="sheet-foot">
+          <span>Updated {updated}</span>
+          <button type="button" className="text-button no-print" onClick={() => window.print()}>
+            <Printer size={14} aria-hidden="true" /> Save this page as PDF
+          </button>
         </footer>
-      </section>
+      </motion.article>
     </main>
   )
 }
