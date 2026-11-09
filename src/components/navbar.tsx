@@ -25,9 +25,9 @@ export default function Navbar() {
         <a className="btn ghost" href="https://github.com/RishiiGamer2201" target="_blank" rel="noreferrer">
           <GithubIcon size={15} aria-hidden="true" /> <span>GitHub</span>
         </a>
-        <button type="button" className="btn solid" onClick={() => window.print()}>
+        <a className="btn solid" href="/resume.pdf" download="Rishii_Kumar_Singh_Resume.pdf">
           <Download size={15} aria-hidden="true" /> <span>Download PDF</span>
-        </button>
+        </a>
       </div>
     </header>
   )
