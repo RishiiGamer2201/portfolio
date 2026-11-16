@@ -62,6 +62,22 @@ export const publications: {
     links: [{ label: 'Challenge', href: 'https://macvi.org/workshop/macvi27/challenges/eurs' }],
   },
   {
+    authors: 'With VAIL',
+    title: 'Open-vocabulary object detection',
+    venue: 'CVPR 2027',
+    status: 'Under review',
+    note: 'First author. Details stay private until the decision.',
+    links: [],
+  },
+  {
+    authors: 'With VAIL',
+    title: 'Physics-judge benchmark for video models',
+    venue: 'CVPR 2027',
+    status: 'Under review',
+    note: 'Co-author. Led the real-world data collection. Details stay private until the decision.',
+    links: [],
+  },
+  {
     authors: 'With AIMS-DTU',
     title: 'Multilingual knowledge-graph completion',
     venue: 'ECIR 2027',
@@ -136,7 +152,10 @@ export const experience: {
     role: 'Researcher',
     org: 'Vision and Interpretability Lab (VAIL)',
     period: 'Oct 2026 to present',
-    points: ['Computer vision research, including real-world data collection for a physical-reasoning dataset and benchmark.'],
+    points: [
+      'Computer vision research, including real-world data collection for a physical-reasoning dataset and benchmark.',
+      'Two papers under review at CVPR 2027, first author on one.',
+    ],
   },
   {
     role: 'Research Intern',
