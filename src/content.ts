@@ -48,6 +48,7 @@ export const publications: {
     status: 'Accepted',
     note: 'First author. Released as TrustUIQA.',
     links: [
+      { label: 'arXiv', href: 'https://arxiv.org/abs/2611.18429' },
       { label: 'Code', href: 'https://github.com/TrustUIQA/TrustUIQA' },
       { label: 'Data', href: 'https://huggingface.co/datasets/TrustUIQA/TrustUIQA' },
     ],
@@ -86,6 +87,7 @@ export const research: {
       "Showed that no metric consistently matches people (best worst-case Cohen's kappa 0.23 vs 0.41 between humans), and that simple edits, PGD attacks and repeated generative edits fool widely used metrics.",
     ],
     links: [
+      { label: 'Paper', href: 'https://arxiv.org/abs/2611.18429' },
       { label: 'GitHub', href: 'https://github.com/TrustUIQA/TrustUIQA' },
       { label: 'Hugging Face', href: 'https://huggingface.co/datasets/TrustUIQA/TrustUIQA' },
     ],
