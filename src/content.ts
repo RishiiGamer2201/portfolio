@@ -193,6 +193,17 @@ export const projects: {
   links: Link[]
 }[] = [
   {
+    name: 'Counterfactual SQL Rewards',
+    line: 'Rewards an RL text-to-SQL agent only if its query is also right on hidden counterfactual copies of the database, so buggy queries that are right by luck stop getting paid. Paid reward hacks fell from 54.1% to 1.9% and paid buggy queries from 29.5% to 16.8%, with 0 of 2,847 correct queries rejected. Three-person team.',
+    tag: 'Lexsi Labs hackathon 2026',
+    tech: 'Python, PyTorch, LoRA, GRPO, SQLite, GCP L4',
+    links: [
+      { label: 'Article', href: 'https://huggingface.co/spaces/sqlcf-lexsi/counterfactual-sql-article' },
+      { label: 'Demo', href: 'https://huggingface.co/spaces/sqlcf-lexsi/counterfactual-sql-demo' },
+      { label: 'GitHub', href: 'https://github.com/RishiiGamer2201/sexsi_hack' },
+    ],
+  },
+  {
     name: 'Sherpa',
     line: 'Terminal assistant that explains the last error and how to fix it, using a fully local GGUF model with no API key.',
     tag: 'Published on PyPI',
@@ -245,6 +256,7 @@ export const openSource = {
   search: 'https://github.com/search?q=author%3ARishiiGamer2201+is%3Apr+is%3Amerged&type=pullrequests',
   items: [
     { repo: 'Heliox-OS', what: '10 merged PRs: WebSocket token streaming, dependency-aware action parallelization, context compression, daemon recovery.', href: 'https://github.com/VyomKulshrestha/Heliox-OS/pulls?q=is%3Apr+author%3ARishiiGamer2201' },
+    { repo: 'AgentTune (Lexsi Labs)', what: 'Reported a reward-hacking exploit in the built-in SQL reward (WHERE 1 = 1 scored like honest SQL); fixed upstream in PR #12.', href: 'https://github.com/Lexsi-Labs/AgentTune/issues/11' },
     { repo: 'scikit-bio', what: 'Replaced deprecated NumPy assert_warns across the test suite.', href: 'https://github.com/scikit-bio/scikit-bio/pull/2556' },
     { repo: 'scikit-verify', what: 'Differential coverage tests for binary ufuncs.', href: 'https://github.com/aadya940/scikit-verify/pull/32' },
     { repo: 'AegisAI', what: 'Bulk CSV import and LLM-client unit tests.', href: 'https://github.com/SdSarthak/AegisAI/pulls?q=is%3Apr+author%3ARishiiGamer2201' },
@@ -254,7 +266,7 @@ export const openSource = {
 
 export const skills: { group: string; items: string[] }[] = [
   { group: 'Vision', items: ['PyTorch', 'OpenCV', 'Segmentation', 'Image restoration', 'Image quality assessment', 'ONNX', 'TensorRT', 'Jetson'] },
-  { group: 'Language and agents', items: ['RAG', 'LLMs', 'Knowledge graphs', 'Hugging Face', 'Agent loops', 'Evaluation'] },
+  { group: 'Language and agents', items: ['RAG', 'LLMs', 'Knowledge graphs', 'Hugging Face', 'Agent loops', 'GRPO and LoRA', 'Evaluation'] },
   { group: 'Engineering', items: ['Python', 'JAX', 'TypeScript', 'React', 'FastAPI', 'PostgreSQL', 'Docker', 'Git'] },
 ]
 
