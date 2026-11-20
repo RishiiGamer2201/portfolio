@@ -18,6 +18,7 @@ export const profile = {
 export const links = [
   { label: 'GitHub', handle: 'RishiiGamer2201', href: 'https://github.com/RishiiGamer2201', kind: 'github' },
   { label: 'LinkedIn', handle: 'rishiikumarsingh', href: 'https://www.linkedin.com/in/rishiikumarsingh/', kind: 'linkedin' },
+  { label: 'Google Scholar', handle: 'Rishii Kumar Singh', href: 'https://scholar.google.com/citations?user=DzJRqTcAAAAJ', kind: 'scholar' },
   { label: 'Hugging Face', handle: 'LogicPalette', href: 'https://huggingface.co/LogicPalette', kind: 'hf' },
   { label: 'X', handle: 'RishiiSingh2201', href: 'https://x.com/RishiiSingh2201', kind: 'x' },
   { label: 'LeetCode', handle: 'CrimsonHex', href: 'https://leetcode.com/u/CrimsonHex/', kind: 'code' },

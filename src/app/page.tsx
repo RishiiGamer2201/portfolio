@@ -1,4 +1,4 @@
-import { ArrowUpRight, Download, Mail, MapPin } from 'lucide-react'
+import { ArrowUpRight, Download, GraduationCap, Mail, MapPin } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { GithubIcon, LinkedinIcon, XIcon } from '@/components/icons/x-icon'
@@ -111,6 +111,7 @@ function linkIcon(kind: (typeof links)[number]['kind']) {
   if (kind === 'github') return <GithubIcon size={15} />
   if (kind === 'linkedin') return <LinkedinIcon size={15} />
   if (kind === 'x') return <XIcon size={15} />
+  if (kind === 'scholar') return <GraduationCap size={15} />
   return <ArrowUpRight size={15} />
 }
 
